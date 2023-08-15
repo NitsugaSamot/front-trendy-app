@@ -1,0 +1,78 @@
+.background-image{
+    margin-top: 80px;
+}
+
+.btn-outline-primary {
+    color: #114c5f;
+    border: solid 3px rgb(17, 76, 95);
+    transition: 0.5s;
+}
+
+.btn-outline-primary:hover {
+    background-color: rgb(17, 76, 95);
+    border: solid 3px rgb(17, 76, 95);
+}
+
+.btn-outline-primary.current {
+    background-color: rgb(17, 76, 95);
+}
+
+.btn-primary {
+    background-color: rgb(17, 76, 95);
+    border: solid 3px rgb(17, 76, 95);
+}
+
+.btn-primary:hover {
+    scale: 1.1;
+}
+
+.btn-primary:disabled {
+    background-color: rgb(17, 76, 95);
+    border: solid 3px rgb(17, 76, 95);
+}
+
+.btn-primary::selection {
+    background-color: rgb(17, 76, 95);
+    border: solid 3px rgb(17, 76, 95);
+}
+
+/* Estilo para el contenedor del icono de WhatsApp */
+.whatsapp-link {
+    position: fixed;
+    bottom: 20px; /* Ajusta el valor para controlar la distancia desde la parte inferior */
+    right: 20px; /* Ajusta el valor para controlar la distancia desde la parte derecha */
+    z-index: 1000; /* Asegura que el icono esté por encima del contenido */
+  }
+  
+  /* Estilo para el icono de WhatsApp */
+  .whatsapp-icon {
+    width: 60px; /* Ajusta el tamaño del icono según tus preferencias */
+    height: auto; /* Mantiene la proporción del icono */
+    border-radius: 50%; /* Hace que el icono sea redondeado */
+    
+    padding: 10px; /* Agrega un espacio de relleno alrededor del icono */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Agrega una sombra al icono */
+
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+  }
+  
+  
+.whatsapp-tooltip {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    opacity: 0; /* Oculta inicialmente el tooltip */
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .whatsapp-icon:hover .whatsapp-tooltip {
+    opacity: 1; /* Muestra el tooltip al pasar el cursor */
+  }
