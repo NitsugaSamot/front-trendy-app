@@ -1,5 +1,5 @@
 import { Outlet, Navigate } from "react-router-dom"
-import useAuth from "../../hooks/useAuth"
+import useAuth from "../../contextlogin/hooks/useAuth";
 
 const ProtectedRoutes = () => {
 
@@ -14,4 +14,4 @@ const ProtectedRoutes = () => {
   )
 }
 
-export default ProtectedRoutes
+export default ProtectedRoutes;

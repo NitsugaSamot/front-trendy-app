@@ -7,7 +7,7 @@
     display: flex;
     max-width: 100%;
     background-color: rgb(17, 76, 95);
-    color: white;  
+    color: white;
     margin-top: 3%;
     padding: 1%;
 }
@@ -22,7 +22,7 @@
     justify-content: center;
 }
 
-.productImage{
+.productImage {
     max-width: 100%;
     padding: 4%;
 }
@@ -30,7 +30,7 @@
 /* rgb(47, 203, 255); */
 /* rgb(17, 76, 95); */
 
-.divImage{
+.divImage {
     max-width: 100%;
 }
 
@@ -45,19 +45,19 @@
     max-width: 100%;
 }
 
-.divBtn{
+.divBtn {
     max-width: 100%;
     padding: 1%;
     display: flex;
     flex-direction: column;
 }
 
-.containerBtn{
+.containerBtn {
     display: flex;
-   gap: 1rem;
+    gap: 1rem;
 }
 
-.btnSize{
+.btnSize {
     padding: 0.8rem;
     gap: 0.4rem;
     justify-content: space-between;
@@ -75,19 +75,24 @@
 
 @font-face {
     font-family: "DMSans";
-    src: url('../../utils/DMSans-VariableFont_opszwght.ttf') 
-    format('truetype');
-  }
-
-  .divButtons {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
+    src: url('../../utils/DMSans-VariableFont_opszwght.ttf') format('truetype');
 }
 
-.buttonSize{
+.divButtons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    gap: 10px
+}
+
+
+/*Nuevo para el carrito */
+
+
+.buttonSize.seleccionado {
+    background-color: rgb(47, 203, 255);
+    color: white;
     width: 35px;
     margin-right: 2.5px;
     margin-left: 2.5px;
@@ -96,11 +101,8 @@
     align-items: center;
 }
 
-.buttonSize2{
-    width: 60px;
-    margin: 1%;
-    justify-content: center;
-    align-items: center;
+.buttonSize2.seleccionado {
+    background-color: rgb(47, 203, 255);
 }
 
 .stock {
