@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import Alerta from "../alerta/Alerta";
-import axiosClient from "../../contextlogin/config/axiosClient";
+import Alert from "../alert/alert";
+import axiosClient from "../../contextClient/config/axiosClient";
 import "./styles.css";
-import imageLogo from "../../assets/trendy-spot-logo.png";
 
-export const ForgetPassword = () => {
+const ForgetPassword = () => {
   const [email, setEmail] = useState("");
-  const [alerta, setAlerta] = useState({});
+  const [alert, setAlert] = useState({});
 
   const handleInputChange = (e, setState) => {
     // Eliminar espacios en blanco al principio y al final del valor
@@ -20,7 +19,7 @@ export const ForgetPassword = () => {
     e.preventDefault();
 
     if ([email].includes("")) {
-      setAlerta({
+      setAlert({
         msg: "Debes introducir el email de registro para poder acceder a la recuperación de tu password",
         error: true,
       });
@@ -32,21 +31,21 @@ export const ForgetPassword = () => {
         email,
       });
 
-      setAlerta({
+      setAlert({
         msg: data.msg,
         error: false,
       });
 
       // setEmail('');
     } catch (error) {
-      setAlerta({
+      setAlert({
         msg: error.response.data.msg,
         error: true,
       });
     }
   };
 
-  const { msg } = alerta;
+  const { msg } = alert;
 
   return (
     <>
@@ -55,7 +54,7 @@ export const ForgetPassword = () => {
           Recupera el acceso a tu cuenta de Trendy-Spot
         </h3>
 
-        {msg && <Alerta alerta={alerta} />}
+        {msg && <Alert alerta={alert} />}
 
         <form action="" className="formRegister" onSubmit={handleSubmit}>
           <div className="columna">
@@ -98,3 +97,4 @@ export const ForgetPassword = () => {
   );
 };
 
+export default ForgetPassword;

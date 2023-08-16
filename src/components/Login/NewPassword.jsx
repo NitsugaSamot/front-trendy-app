@@ -1,15 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import Alerta from "../alerta/Alerta";
-import axiosClient from "../../contextlogin/config/axiosClient";
-import "./styles.css";
+import Alert from "../alert/alert";
+import axiosClient from "../../contextClient/config/axiosClient";
 import imageLogo from "../../assets/trendy-spot-logo.png";
-import { useEffect } from "react";
+import "./styles.css";
 
-export const NewPassword = () => {
+const NewPassword = () => {
   const [password, setPassword] = useState("");
   const [validToken, setValidToken] = useState(false);
-  const [alerta, setAlerta] = useState({});
+  const [alert, setAlert] = useState({});
   const [passwordModified, setPasswordModified] = useState(false);
 
   const params = useParams();
@@ -21,7 +20,7 @@ export const NewPassword = () => {
         await axiosClient(`/users/reset-password/${token}`);
         setValidToken(true);
       } catch (error) {
-        setAlerta({
+        setAlert({
           msg: error.response.data.msg,
           error: true,
         });
@@ -34,7 +33,7 @@ export const NewPassword = () => {
     e.preventDefault();
 
     if (password.length < 6) {
-      setAlerta({
+      setAlert({
         msg: "El Password debe tener al menos 6 caracteres",
         error: true,
       });
@@ -44,14 +43,14 @@ export const NewPassword = () => {
       const url = `/users/reset-password/${token}`;
 
       const { data } = await axiosClient.post(url, { password });
-      setAlerta({
+      setAlert({
         msg: data.msg,
         error: false,
       });
       setPassword("");
       setPasswordModified(true);
     } catch (error) {
-      setAlerta({
+      setAlert({
         msg: error.response.data.msg,
         error: true,
       });
@@ -63,14 +62,14 @@ export const NewPassword = () => {
     setState(value);
   };
 
-  const { msg } = alerta;
+  const { msg } = alert;
 
   return (
     <>
       <div className="mainRegister">
         <h3 className="titleLogin">Crea una cuenta para hacer tu compra</h3>
 
-        {msg && <Alerta alerta={alerta} />}
+        {msg && <Alert alerta={alert} />}
 
         {validToken && (
           <form action="" className="formRegister" onSubmit={handleSubmit}>
@@ -111,3 +110,5 @@ export const NewPassword = () => {
     </>
   );
 };
+
+export default NewPassword;

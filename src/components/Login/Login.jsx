@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import Alerta from "../alerta/Alerta";
-import axiosClient from "../../contextlogin/config/axiosClient";
+import Alert from "../alert/alert";
+import axiosClient from "../../contextClient/config/axiosClient";
 // import useAuth from '../hooks/useAuth'
-import useAuth from "../../contextlogin/hooks/useAuth";
+import useAuth from "../../contextClient/hooks/useAuth";
 import "./styles.css";
-import imageLogo from "./trendy-spot-logo.png";
+import imageLogo from "../../assets/trendy-spot-logo.png";
 
-export const Login = () => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [alerta, setAlerta] = useState({});
+  const [alert, setAlert] = useState({});
 
   const { setAuth } = useAuth();
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ export const Login = () => {
     e.preventDefault();
 
     if ([email, password].includes("")) {
-      setAlerta({
+      setAlert({
         msg: "Todos los campos son obligatorios",
         error: true,
       });
@@ -32,28 +32,28 @@ export const Login = () => {
         email,
         password,
       });
-      setAlerta({});
+      setAlert({});
       //
       localStorage.setItem("token", data.token);
       setAuth(data);
       // navigate('/')
       navigate("/logged_in");
     } catch (error) {
-      setAlerta({
+      setAlert({
         msg: error.response.data.msg,
         error: true,
       });
     }
   };
 
-  const { msg } = alerta;
+  const { msg } = alert;
 
   return (
     <>
       <div className="mainRegister">
         <h3 className="titleLogin">Inicia Sesión Y haz tus compras</h3>
 
-        {msg && <Alerta alerta={alerta} />}
+        {msg && <Alert alerta={alert} />}
 
         <form className="formLogin" onSubmit={handleSubmit}>
           <div className="columnaLogin">
@@ -109,3 +109,5 @@ export const Login = () => {
     </>
   );
 };
+
+export default Login;

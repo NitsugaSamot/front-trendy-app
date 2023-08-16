@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from "react-redux";
-import CardsContainer from '../../components/cardsContainer/container'
+import CardsContainer from '../../components/cardsContainer/cardsContainer'
 import Filter from "../../components/filter/filter";
-import Paginate from '../../components/paginate/Paginate';
+import Paginate from '../../components/paginate/paginate';
 import banner from '../../assets/Home.png'
 import "./home.css";
 

@@ -1,22 +1,22 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import Alerta from "../alerta/Alerta";
-import axiosClient from "../../contextlogin/config/axiosClient";
+import Alert from "../alert/alert";
+import axiosClient from "../../contextClient/config/axiosClient";
+import imageLogo from "../../assets/trendy-spot-logo.png";
 import "./styles.css";
-import imageLogo from "./trendy-spot-logo.png";
 
-export const Register = () => {
+const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repetirPassword, setRepetirPassword] = useState("");
-  const [alerta, setAlerta] = useState({});
+  const [alert, setAlert] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if ([name, email, password, repetirPassword].includes("")) {
-      setAlerta({
+      setAlert({
         msg: "Todos los campos son obligatorios",
         error: true,
       });
@@ -24,7 +24,7 @@ export const Register = () => {
     }
 
     if (password !== repetirPassword) {
-      setAlerta({
+      setAlert({
         msg: "Los Passwords no coinciden",
         error: true,
       });
@@ -32,14 +32,14 @@ export const Register = () => {
     }
 
     if (password.length < 6) {
-      setAlerta({
+      setAlert({
         msg: "El Password debe tener al menos 6 caracteres",
         error: true,
       });
       return;
     }
 
-    setAlerta({});
+    setAlert({});
 
     // Crear usuario de la api
 
@@ -50,7 +50,7 @@ export const Register = () => {
         password,
       });
 
-      setAlerta({
+      setAlert({
         msg: data.msg,
         error: false,
       });
@@ -60,7 +60,7 @@ export const Register = () => {
       setPassword("");
       setRepetirPassword("");
     } catch (error) {
-      setAlerta({
+      setAlert({
         msg: error.response.data.error,
         error: true,
       });
@@ -74,17 +74,17 @@ export const Register = () => {
   };
 
   setTimeout(() => {
-    setAlerta({});
+    setAlert({});
   }, 6000);
 
-  const { msg } = alerta;
+  const { msg } = alert;
 
   return (
     <>
       <div className="mainRegister">
         <h3 className="titleLogin">Crea una cuenta para hacer tu compra</h3>
 
-        {msg && <Alerta alerta={alerta} />}
+        {msg && <Alert alerta={alert} />}
 
         <form action="" className="formRegister" onSubmit={handleSubmit}>
           <div className="columna">
@@ -168,3 +168,5 @@ export const Register = () => {
     </>
   );
 };
+
+export default Register;

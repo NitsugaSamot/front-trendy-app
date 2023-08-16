@@ -82,4 +82,4 @@ export {
     AuthProvider
 }
 
-export default AuthContext
+export default AuthContext;

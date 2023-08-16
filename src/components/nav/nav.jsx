@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { initMercadoPago } from "@mercadopago/sdk-react";
 import { NavLink } from "react-router-dom";
-import useAuth from "../../contextlogin/hooks/useAuth";
+import useAuth from "../../contextClient/hooks/useAuth";
 import imageCart from "../../assets/cart.png";
 import imageCart2 from "../../assets/cart2.png";
 import imageLogo from "../../assets/trendy-spot-logo.png";

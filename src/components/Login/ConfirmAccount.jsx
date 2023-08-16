@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import Alerta from "../alerta/Alerta";
-import axiosClient from "../../contextlogin/config/axiosClient";
+import Alert from "../alert/alert";
+import axiosClient from "../../contextClient/config/axiosClient";
 import "./styles.css";
 
-export const ConfirmAccount = () => {
-  const [alerta, setAlerta] = useState({});
+const ConfirmAccount = () => {
+  const [alert, setAlert] = useState({});
   const [accountConfirmated, setAccountConfirmated] = useState(false);
 
   const params = useParams();
@@ -19,13 +19,13 @@ export const ConfirmAccount = () => {
         const { data } = await axiosClient.post(url);
 
         // console.log(data)
-        setAlerta({
+        setAlert({
           msg: data.msg,
           error: false,
         });
         setAccountConfirmated(true);
       } catch (error) {
-        setAlerta({
+        setAlert({
           msg: error.response.data.error,
           error: true,
         });
@@ -34,14 +34,14 @@ export const ConfirmAccount = () => {
     ConfirmAccount();
   }, []);
 
-  const { msg } = alerta;
+  const { msg } = alert;
 
   return (
     <>
       <div>ConfirmAccount</div>
 
       <div className="mt-20 md:mt-10 shadow-lg px-5 py-10 rounded-xl bg-white">
-        {msg && <Alerta alerta={alerta} />}
+        {msg && <Alert alerta={alert} />}
 
         {accountConfirmated && (
           <Link
@@ -56,3 +56,4 @@ export const ConfirmAccount = () => {
   );
 };
 
+export default ConfirmAccount;

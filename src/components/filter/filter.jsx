@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "./filter.css";
 import { orderByName, filterPrice, filterByBrand } from "../../redux/actions";
+import "./filter.css";
 
 const Filter = ({ onPageChange }) => {
   const allClothes2 = useSelector((state) => state.allClothes2);

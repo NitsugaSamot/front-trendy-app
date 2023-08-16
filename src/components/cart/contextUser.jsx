@@ -1,8 +1,8 @@
 import Home from "../../views/home/home";
-import "./styles.css";
 import Nav from "../nav/nav";
+import "./styles.css";
 
-export const ContextUser = () => {
+const ContextUser = () => {
   return (
     <>
       <div className="containerDiv">
@@ -12,3 +12,5 @@ export const ContextUser = () => {
     </>
   );
 };
+
+export default ContextUser;

@@ -1,6 +1,9 @@
-import { NavLink } from "react-router-dom";
+const ConfirmationPage = () => {
+  // Manejador para el botón "Volver a Trendyspot"
+  const handleBack = () => {
+    window.location.href = "http://localhost:5173";
+  };
 
-export const ConfirmationPage = () => {
   return (
     <div className="container mt-5">
       <div className="jumbotron">
@@ -13,11 +16,12 @@ export const ConfirmationPage = () => {
         <p>
           Si tienes alguna pregunta o necesitas ayuda, no dudes en contactarnos.
         </p>
-
-        <NavLink to="/home" className="btn btn-primary btn-lg">
+        <button className="btn btn-primary btn-lg" onClick={handleBack}>
           Volver a Trendyspot
-        </NavLink>
+        </button>
       </div>
     </div>
   );
 };
+
+export default ConfirmationPage;
