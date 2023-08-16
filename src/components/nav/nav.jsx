@@ -133,12 +133,11 @@ const Nav = () => {
       )}
 
       {/* Botón de refrescar en la página principal */}
-      {location.pathname === "/" ||
-        (location.pathname === "/logged_in" && (
-          <button className="btnRefresh" onClick={handleRefresh}>
-            Refresh
-          </button>
-        ))}
+      {location.pathname === "/" || location.pathname === "/logged_in" ? (
+        <button className="btnRefresh" onClick={handleRefresh}>
+          Refresh
+        </button>
+      ) : null}
       {/* Enlace para crear una nueva prenda */}
       <NavLink to="/create">
         <button className="btnSearch">create</button>

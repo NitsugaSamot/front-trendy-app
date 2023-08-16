@@ -9,11 +9,11 @@ import Nav from "./components/nav/nav";
 import Register from "./components/login/register";
 import AuthLayout from "./contextClient/layoutClient/authLayoutClient";
 import ProtectedRoutes from "./components/layouts/protectedRoutes";
-import ConfirmAccount from "./components/Login/confirmAccount";
+import ConfirmAccount from "./components/login/confirmAccount";
 import ConfirmationPage from "./mercadoPago/confirmationPage";
 import ForgetPassword from "./components/login/forgetPassword";
 import NewPassword from "./components/login/newPassword";
-import AuthProvider from "./contextClient/context/authProvider";
+import { AuthProvider } from "./contextClient/context/authProvider";
 import ContextUser from "./components/cart/contextUser";
 import { getAllClothes, initializeCart } from "./redux/actions";
 import "./App.css";
@@ -53,7 +53,6 @@ function App() {
             <Route path="reset-password" element={<ForgetPassword />} />
             <Route path="new-password/:token" element={<NewPassword />} />
             <Route path="/confirmation" element={<ConfirmationPage />} />
-
             <Route />
             <Route path="/logged_in" element={<ProtectedRoutes />}>
               <Route index element={<ContextUser />} />
