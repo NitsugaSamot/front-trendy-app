@@ -1,4 +1,6 @@
 import { Routes, Route, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 import AuthLayout from "./contextlogin/layouts/AuthLayout";
 import ProtectedRoutes from "./components/Layouts/ProtectedRoutes";
 import Home from "./views/home/home";
@@ -8,15 +10,12 @@ import Nav from "./components/nav/nav";
 import { Login } from "./components/Login/Login";
 import Register from "./components/Login/Register";
 import ConfirmAccount from "./components/Login/ConfirmAccount";
+import ContextUser from "./components/carrito/ContextUser";
 import ForgetPassword from "./components/Login/ForgetPassword";
 import { NewPassword } from "./components/Login/NewPassword";
 import { AuthProvider } from "./contextlogin/context/AuthProvider";
-import ContextUser from "./components/carrito/ContextUser";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
 import { getAllClothes } from "./redux/actions";
 import { initializeCart } from "../src/redux/actions";
-// import ConfirmationPage from "./MercadoPago/confirmationPage";
 import "./App.css";
 
 function App() {
