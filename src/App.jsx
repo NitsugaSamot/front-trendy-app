@@ -10,7 +10,7 @@ import Nav from "./components/nav/nav.jsx";
 import { Login } from "./components/Login/Login.jsx";
 import { Register } from "./components/Login/Register.jsx";
 import { ConfirmAccount } from "./components/Login/ConfirmAccount.jsx";
-// import { ContextUser } from "./components/carrito/ContextUser.jsx";
+import { ContextUser } from "./components/Carrito/ContextUser.jsx";
 import { ForgetPassword } from "./components/Login/ForgetPassword.jsx";
 import { NewPassword } from "./components/Login/NewPassword.jsx";
 import { AuthProvider } from "./contextlogin/context/AuthProvider.jsx";
