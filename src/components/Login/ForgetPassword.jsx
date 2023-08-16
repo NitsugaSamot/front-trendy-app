@@ -5,7 +5,7 @@ import axiosClient from "../../contextlogin/config/axiosClient";
 import "./styles.css";
 import imageLogo from "../../assets/trendy-spot-logo.png";
 
-const ForgetPassword = () => {
+export const ForgetPassword = () => {
   const [email, setEmail] = useState("");
   const [alerta, setAlerta] = useState({});
 
@@ -98,4 +98,3 @@ const ForgetPassword = () => {
   );
 };
 
-export default ForgetPassword;

@@ -4,7 +4,7 @@ import Alerta from "../alerta/Alerta";
 import axiosClient from "../../contextlogin/config/axiosClient";
 import "./styles.css";
 
-const ConfirmAccount = () => {
+export const ConfirmAccount = () => {
   const [alerta, setAlerta] = useState({});
   const [accountConfirmated, setAccountConfirmated] = useState(false);
 
@@ -56,4 +56,3 @@ const ConfirmAccount = () => {
   );
 };
 
-export default ConfirmAccount;

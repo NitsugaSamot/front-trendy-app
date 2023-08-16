@@ -1,21 +1,20 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import AuthLayout from "./contextlogin/layouts/AuthLayout";
-import ProtectedRoutes from "./components/Layouts/ProtectedRoutes";
-import Home from "./views/home/home";
-import Detail from "./views/detail/detail";
-import CreateProduct from "./views/createProduct/createProduct";
-import Nav from "./components/nav/nav";
-import { Login } from "./components/Login/Login";
-import Register from "./components/Login/Register";
-import ConfirmAccount from "./components/Login/ConfirmAccount";
-import ContextUser from "./components/carrito/ContextUser";
-import ForgetPassword from "./components/Login/ForgetPassword";
-import { NewPassword } from "./components/Login/NewPassword";
-import { AuthProvider } from "./contextlogin/context/AuthProvider";
-import { getAllClothes } from "./redux/actions";
-import { initializeCart } from "../src/redux/actions";
+import AuthLayout from "./contextlogin/layouts/AuthLayout.jsx";
+import ProtectedRoutes from "./components/Layouts/ProtectedRoutes.jsx";
+import Home from "./views/home/home.jsx";
+import Detail from "./views/detail/detail.jsx";
+import CreateProduct from "./views/createProduct/createProduct.jsx";
+import Nav from "./components/nav/nav.jsx";
+import { Login } from "./components/Login/Login.jsx";
+import { Register } from "./components/Login/Register.jsx";
+import { ConfirmAccount } from "./components/Login/ConfirmAccount.jsx";
+import { ContextUser } from "./components/carrito/ContextUser.jsx";
+import { ForgetPassword } from "./components/Login/ForgetPassword.jsx";
+import { NewPassword } from "./components/Login/NewPassword.jsx";
+import { AuthProvider } from "./contextlogin/context/AuthProvider.jsx";
+import { getAllClothes, initializeCart } from "./redux/actions.js";
 import "./App.css";
 
 function App() {

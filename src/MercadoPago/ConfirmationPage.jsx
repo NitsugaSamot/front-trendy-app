@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-const ConfirmationPage = () => {
+export const ConfirmationPage = () => {
   return (
     <div className="container mt-5">
       <div className="jumbotron">
@@ -21,5 +21,3 @@ const ConfirmationPage = () => {
     </div>
   );
 };
-
-export default ConfirmationPage;
