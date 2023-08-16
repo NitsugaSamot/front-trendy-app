@@ -16,7 +16,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getAllClothes } from "./redux/actions";
 import { initializeCart } from "../src/redux/actions";
-import ConfirmationPage from "./mercadoPago/confirmationPage";
+import ConfirmationPage from "./MercadoPago/confirmationPage";
 import "./App.css";
 
 function App() {
