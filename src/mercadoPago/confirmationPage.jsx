@@ -1,10 +1,11 @@
 // const VITE_FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL;
-const VERCEL_FRONTEND_URL = import.meta.env.VERCEL_FRONTEND_URL;
+const REACT_APP_VERCEL_FRONTEND_URL = import.meta.env
+  .REACT_APP_VERCEL_FRONTEND_URL;
 
 const ConfirmationPage = () => {
   // Manejador para el botón "Volver a Trendyspot"
   const handleBack = () => {
-    window.location.href = VERCEL_FRONTEND_URL;
+    window.location.href = REACT_APP_VERCEL_FRONTEND_URL;
   };
 
   return (
