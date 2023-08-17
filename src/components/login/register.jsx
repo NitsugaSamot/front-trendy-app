@@ -46,7 +46,7 @@ const Register = () => {
 
     try {
       const { data } = await axios.post(
-        `https://back-trendy-app.up.railway.app/users`,
+       "https://back-trendy-app.up.railway.app/users",
         {
           name,
           email,
