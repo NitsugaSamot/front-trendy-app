@@ -1,4 +1,5 @@
-import axios from "axios";
+// import axios from "axios";
+import axiosClient from "../../contextClient/config/axiosClient";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -52,8 +53,8 @@ const Nav = () => {
   const handleBuy = () => {
     const createPreference = async () => {
       try {
-        const response = await axios.post(
-          "http://localhost:3004/mercadopago/order",
+        const response = await axiosClient.post(
+          "/mercadopago/order",
           orderData
         );
         const link = response.data.response.body.init_point;
