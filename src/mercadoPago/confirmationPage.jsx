@@ -1,4 +1,4 @@
-require("dotenv").config();
+import("dotenv").config();
 const { VITE_FRONTEND_URL, VERCEL_FRONTEND_URL } = process.env;
 console.log(VITE_FRONTEND_URL, VERCEL_FRONTEND_URL);
 const ConfirmationPage = () => {
