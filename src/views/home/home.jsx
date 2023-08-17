@@ -8,7 +8,7 @@ import "./home.css";
 
 const Home = () => {
   const allClothes1 = useSelector((state) => state.allClothes1);
-
+console.log(allClothes1);
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
 
