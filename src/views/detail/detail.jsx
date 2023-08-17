@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 import { addToCart } from "../../redux/actions";
-import axiosClient from "../../contextClient/config/axiosClient";
-// import axios from "axios";
+// import axiosClient from "../../contextClient/config/axiosClient";
+import axios from "axios";
 
 //-----------------COSAS NUEVAS PARA EL CARRITO MI RAY
 import classnames from "classnames";
@@ -49,8 +49,8 @@ const Detail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosClient.get(
-          `/products/${id}`
+        const response = await axios.get(
+          `https://back-trendy-app.up.railway.app/products/${id}`
         );
         const { data } = response;
         setGarment(data);
