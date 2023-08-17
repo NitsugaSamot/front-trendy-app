@@ -18,7 +18,7 @@ import {
 export const getAllClothes = () => {
   return async function (dispatch) {
     try {
-      const all = await axiosClient.get("/products");
+      const all = await axiosClient.get("products");
       return dispatch({
         type: GET_ALL,
         payload: all.data,
@@ -42,7 +42,7 @@ export const searchName = (payload) => {
   return async function (dispatch) {
     try {
       const productByName = await axiosClient.get(
-        `/products/?name=${payload}`
+        `products/?name=${payload}`
       );
       return dispatch({
         type: SEARCH_NAME,
@@ -67,7 +67,7 @@ export const filterByBrand = (brandName) => {
   return async function (dispatch) {
     try {
       const response = await axiosClient.get(
-        `/products/brands/${brandName}`
+        `products/brands/${brandName}`
       );
       return dispatch({
         type: FILTER_BY_BRAND,
@@ -83,7 +83,7 @@ export const filterPrice = ({ minPrice, maxPrice }) => {
   return async function (dispatch) {
     try {
       const response = await axiosClient.get(
-        `/products/filter?minPrice=${minPrice}&maxPrice=${maxPrice}`
+        `products/filter?minPrice=${minPrice}&maxPrice=${maxPrice}`
       );
       return dispatch({
         type: FILTER_BY_PRICE,
