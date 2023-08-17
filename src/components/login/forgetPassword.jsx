@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import Alert from "../alert/alert";
-import axiosClient from "../../contextClient/config/axiosClient";
+import axios from "axios";
+// import axiosClient from "../../contextClient/config/axiosClient";
 import "./styles.css";
 
 const ForgetPassword = () => {
@@ -27,9 +28,12 @@ const ForgetPassword = () => {
     }
 
     try {
-      const { data } = await axiosClient.post(`/users/reset-password`, {
-        email,
-      });
+      const { data } = await axios.post(
+        `https://back-trendy-app.up.railway.app/users/reset-password`,
+        {
+          email,
+        }
+      );
 
       setAlert({
         msg: data.msg,

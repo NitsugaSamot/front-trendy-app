@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Alert from "../alert/alert";
-import axiosClient from "../../contextClient/config/axiosClient";
+import axios from "axios";
+// import axiosClient from "../../contextClient/config/axiosClient";
 import "./styles.css";
 
 const ConfirmAccount = () => {
@@ -14,9 +15,9 @@ const ConfirmAccount = () => {
   useEffect(() => {
     const ConfirmAccount = async () => {
       try {
-        const url = `/users/confirm/${id}`;
+        const url = `https://back-trendy-app.up.railway.app/users/confirm/${id}`;
         // const {data} = await clienteAxios(url)
-        const { data } = await axiosClient.post(url);
+        const { data } = await axios.post(url);
 
         // console.log(data)
         setAlert({

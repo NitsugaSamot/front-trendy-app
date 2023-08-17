@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Alert from "../alert/alert";
-import axiosClient from "../../contextClient/config/axiosClient";
-// import useAuth from '../hooks/useAuth'
+import axios from "axios";
+// import axiosClient from "../../contextClient/config/axiosClient";
 import useAuth from "../../contextClient/hooks/useAuth";
-import "./styles.css";
 import imageLogo from "../../assets/trendy-spot-logo.png";
+import "./styles.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -28,10 +28,13 @@ const Login = () => {
 
     try {
       //Informacion requerida: email y password
-      const { data } = await axiosClient.post("/users/login", {
-        email,
-        password,
-      });
+      const { data } = await axios.post(
+        "https://back-trendy-app.up.railway.app/users/login",
+        {
+          email,
+          password,
+        }
+      );
       setAlert({});
       //
       localStorage.setItem("token", data.token);

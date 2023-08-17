@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Alert from "../alert/alert";
-import axiosClient from "../../contextClient/config/axiosClient";
+import axios from "axios";
+// import axiosClient from "../../contextClient/config/axiosClient";
 import imageLogo from "../../assets/trendy-spot-logo.png";
 import "./styles.css";
 
@@ -17,7 +18,9 @@ const NewPassword = () => {
   useEffect(() => {
     const testToken = async () => {
       try {
-        await axiosClient(`/users/reset-password/${token}`);
+        await axios(
+          `https://back-trendy-app.up.railway.app/users/reset-password/${token}`
+        );
         setValidToken(true);
       } catch (error) {
         setAlert({
@@ -40,9 +43,9 @@ const NewPassword = () => {
       return;
     }
     try {
-      const url = `/users/reset-password/${token}`;
+      const url = `https://back-trendy-app.up.railway.app/users/reset-password/${token}`;
 
-      const { data } = await axiosClient.post(url, { password });
+      const { data } = await axios.post(url, { password });
       setAlert({
         msg: data.msg,
         error: false,

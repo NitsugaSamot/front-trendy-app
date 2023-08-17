@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Alert from "../alert/alert";
-import axiosClient from "../../contextClient/config/axiosClient";
+import axios from "axios";
+// import axiosClient from "../../contextClient/config/axiosClient";
 import imageLogo from "../../assets/trendy-spot-logo.png";
 import "./styles.css";
 
@@ -44,11 +45,14 @@ const Register = () => {
     // Crear usuario de la api
 
     try {
-      const { data } = await axiosClient.post(`/users`, {
-        name,
-        email,
-        password,
-      });
+      const { data } = await axios.post(
+        `https://back-trendy-app.up.railway.app/users`,
+        {
+          name,
+          email,
+          password,
+        }
+      );
 
       setAlert({
         msg: data.msg,
