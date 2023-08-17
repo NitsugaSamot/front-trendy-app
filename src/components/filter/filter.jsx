@@ -11,7 +11,7 @@ const Filter = ({ onPageChange }) => {
     maxPrice: "",
   });
 
-  const [selectedBrand, setSelectedBrand] = useState("");
+  // const [selectedBrand, setSelectedBrand] = useState("");
   const [errorPrice, setErrorPrice] = useState("");
   const dispatch = useDispatch();
 
@@ -30,7 +30,6 @@ const Filter = ({ onPageChange }) => {
   };
 
   const handleFilterBrandSelect = (event) => {
-    
     dispatch(filterByBrand(event.target.value));
     onPageChange(1);
   };
@@ -47,10 +46,10 @@ const Filter = ({ onPageChange }) => {
     setPrice({ ...price, [event.target.name]: event.target.value });
   };
 
-  const handleSelectedBrand = (event) => {
-    setSelectedBrand(event.target.value)
-  }
-  
+  // const handleSelectedBrand = (event) => {
+  //   setSelectedBrand(event.target.value)
+  // }
+
   return (
     <div className="navbar navbar-expand-lg bg-body-tertiary containerFilter">
       <h4>Order</h4>
@@ -66,12 +65,9 @@ const Filter = ({ onPageChange }) => {
       <select
         className="form-select"
         name="selectedBrand"
-       
         onChange={handleFilterBrandSelect}
       >
-        <option disabled>
-          Select brand
-        </option>
+        <option disabled>Select brand</option>
         {filterBrands.map((brand, index) => (
           <option key={index} value={brand}>
             {brand}

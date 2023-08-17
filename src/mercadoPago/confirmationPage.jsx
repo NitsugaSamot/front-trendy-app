@@ -1,7 +1,10 @@
+require("dotenv").config();
+const { VITE_FRONTEND_URL, VERCEL_FRONTEND_URL } = process.env;
+
 const ConfirmationPage = () => {
   // Manejador para el botón "Volver a Trendyspot"
   const handleBack = () => {
-    window.location.href = "http://localhost:5173";
+    window.location.href = VITE_FRONTEND_URL || VERCEL_FRONTEND_URL;
   };
 
   return (

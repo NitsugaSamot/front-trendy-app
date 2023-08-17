@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import validation from "./validations";
 import Nav from "../../components/nav/nav";
+import axiosClient from "../../contextClient/config/axiosClient";
 import "./createProduct.css";
 
 const CreateProduct = () => {
@@ -150,7 +151,7 @@ const CreateProduct = () => {
     const resultado = losArrays.join(" ");
     postForm.brand = resultado;
     //------------------------------------------------------------------------------------------------------------------------
-    await axios.post("http://localhost:3004/products/create", postForm);
+    await axiosClient.post("/products/create", postForm);
     setForm({
       name: "",
       price: "",
