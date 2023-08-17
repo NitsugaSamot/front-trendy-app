@@ -1,8 +1,8 @@
-// import axios from "axios";
+import axios from "axios";
+// import axiosClient from "../../contextClient/config/axiosClient";
 import { useState } from "react";
 import validation from "./validations";
 import Nav from "../../components/nav/nav";
-import axiosClient from "../../contextClient/config/axiosClient";
 import "./createProduct.css";
 
 const CreateProduct = () => {
@@ -151,7 +151,10 @@ const CreateProduct = () => {
     const resultado = losArrays.join(" ");
     postForm.brand = resultado;
     //------------------------------------------------------------------------------------------------------------------------
-    await axiosClient.post("/products/create", postForm);
+    await axios.post(
+      "https://back-trendy-app.up.railway.app/products/create",
+      postForm
+    );
     setForm({
       name: "",
       price: "",

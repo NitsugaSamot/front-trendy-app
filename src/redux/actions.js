@@ -1,5 +1,5 @@
-// import axios from "axios";
-import axiosClient from "../contextClient/config/axiosClient";
+import axios from "axios";
+// import axiosClient from "../contextClient/config/axiosClient";
 import {
   ORDER_BY_NAME,
   FILTER_BY_BRAND,
@@ -16,10 +16,11 @@ import {
 } from "./action-types";
 
 export const getAllClothes = () => {
-  console.log(axiosClient);
   return async function (dispatch) {
     try {
-      const all = await axiosClient.get("/products");
+      const all = await axios.get(
+        "https://back-trendy-app.up.railway.app/products"
+      );
       return dispatch({
         type: GET_ALL,
         payload: all.data,
@@ -42,8 +43,8 @@ export function orderByName(payload) {
 export const searchName = (payload) => {
   return async function (dispatch) {
     try {
-      const productByName = await axiosClient.get(
-        `/products/?name=${payload}`
+      const productByName = await axios.get(
+        `https://back-trendy-app.up.railway.app/products/?name=${payload}`
       );
       return dispatch({
         type: SEARCH_NAME,
@@ -67,8 +68,8 @@ export const refresh = () => {
 export const filterByBrand = (brandName) => {
   return async function (dispatch) {
     try {
-      const response = await axiosClient.get(
-        `/products/brands/${brandName}`
+      const response = await axios.get(
+        `https://back-trendy-app.up.railway.app/products/brands/${brandName}`
       );
       return dispatch({
         type: FILTER_BY_BRAND,
@@ -83,8 +84,8 @@ export const filterByBrand = (brandName) => {
 export const filterPrice = ({ minPrice, maxPrice }) => {
   return async function (dispatch) {
     try {
-      const response = await axiosClient.get(
-        `/products/filter?minPrice=${minPrice}&maxPrice=${maxPrice}`
+      const response = await axios.get(
+        `https://back-trendy-app.up.railway.app/products/filter?minPrice=${minPrice}&maxPrice=${maxPrice}`
       );
       return dispatch({
         type: FILTER_BY_PRICE,
