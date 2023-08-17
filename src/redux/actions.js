@@ -16,6 +16,7 @@ import {
 } from "./action-types";
 
 export const getAllClothes = () => {
+  console.log(axiosClient);
   return async function (dispatch) {
     try {
       const all = await axiosClient.get("/products");
