@@ -29,7 +29,7 @@ const ForgetPassword = () => {
 
     try {
       const { data } = await axios.post(
-        `https://back-trendy-app.up.railway.app/users/reset-password`,
+        "https://back-trendy-app.up.railway.app/users/reset-password",
         {
           email,
         }
