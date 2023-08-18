@@ -15,8 +15,10 @@ const ConfirmAccount = () => {
   useEffect(() => {
     const ConfirmAccount = async () => {
       try {
-        const url = `https://back-trendy-app.up.railway.app/users/confirm/${id}`;
-        const { data } = await axios.post(url);
+        // const url = `https://back-trendy-app.up.railway.app/users/confirm/${id}`;
+        const { data } = await axios.post(
+          `https://back-trendy-app.up.railway.app/users/confirm/${id}`
+        );
 
         // console.log(data)
         setAlert({
