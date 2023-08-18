@@ -25,5 +25,5 @@ const ConfirmationPage = () => {
     </div>
   );
 };
-//
+
 export default ConfirmationPage;
