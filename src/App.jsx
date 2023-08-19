@@ -1,5 +1,6 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import AuthLayout from "./layouts/AuthLayout";
+
 import ProtectedRoutes from "./components/Layouts/ProtectedRoutes";
 
 import Home from "./views/home/home";
@@ -11,9 +12,15 @@ import { Login } from "./components/Login/Login";
 import Register from "./components/Login/Register";
 import ConfirmAccount from "./components/Login/ConfirmAccount";
 import ForgetPassword from "./components/Login/ForgetPassword";
+import Profile from "./components/profile/profile";
+import EditProfile from './components/profile/editProfile'
+import ChangePassword from "./components/profile/changePassword";
+
 import { AuthProvider } from "./context/AuthProvider";
 import ContextUser from "./components/Carrito/ContextUser";
 import { NewPassword } from "./components/Login/NewPassword";
+
+
 
 
 import { useDispatch } from "react-redux";
@@ -26,37 +33,6 @@ import Product from './MercadoPago/Product'
 
 
 import "./App.css";
-
-// import Home from "./components/home/home";
-// import Detail from "./components/detail/detail";
-// import CreateProduct from "./components/createProduct/createProduct";
-// import Nav from "./components/nav/nav";
-// // import NavClient from './components/nav-client/NavClient'
-
-// import { Login } from "./components/Login/Login";
-// import Register from "./components/Login/Register";
-// import ConfirmAccount from "./components/Login/ConfirmAccount";
-// import Carrito from "./components/Carrito/Carrito";
-// import {AuthProvider} from './context/AuthPrivider'
-
-
-// // function App() {
-// import { getAllClothes, initializeCart } from "./redux/actions";
-// import { useEffect } from "react";
-// import { useDispatch } from "react-redux";
-
-// //* Mercado Pago
-// import Product from "./MercadoPago/Product";
-// import ConfirmationPage from "./MercadoPago/ConfirmationPage";
-
-
-
-// function App() {
-//   const dispatch = useDispatch()
-//   const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-
-//   useEffect(() => {
-//     console.log(storedCart);
 
 function App() {
   const dispatch = useDispatch()
@@ -72,7 +48,7 @@ function App() {
   const location = useLocation();
 
   // Define las rutas en las que no quieres mostrar el componente Nav
-  const pathsWithoutNav = ['/login', '/register', '/confirm', '/reset-password' ,'/logged_in ', '/new-password'];
+  const pathsWithoutNav = ['/login', '/register', '/confirm', '/reset-password' ,'/logged_in ', '/new-password', '/logged_in/profile', '/logged_in/changue-password', '/logged_in/edit-profile'];
 
   const shouldShowNav = !pathsWithoutNav.some(path => location.pathname.startsWith(path));
 
@@ -88,12 +64,16 @@ function App() {
                   <Route path="/" element={<Home />} />
                     <Route path="detail/:id" element={<Detail />} />
                     <Route path='create' element={<CreateProduct/>} />
+                    <Route path='perfil' element={<perfilUser/>} />
                     <Route path='login' element={<Login/>} />
+
+
                     <Route path='login/register' element={<Register/>} />
                     <Route path='confirm/:id' element={<ConfirmAccount/>}
                      />
                     <Route path='reset-password' element={<ForgetPassword/>} />
                     <Route path='new-password/:token' element={<NewPassword/>} />
+
                     
                     <Route path="/" element={<Home />} />
                   <Route path="mercado" element={<Product />} />
@@ -103,6 +83,11 @@ function App() {
 
                 <Route path="/logged_in" element={<ProtectedRoutes/>}>
                     <Route index element={<ContextUser/>} />
+
+                    <Route path='/logged_in/profile' element={< Profile/>} />
+                    <Route path='/logged_in/changue-password' element={< ChangePassword/>} />
+                    <Route path='/logged_in/edit-profile' element={<EditProfile />} />
+
                 </Route>
             </Route>
 

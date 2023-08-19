@@ -114,7 +114,7 @@ return (
         
           {auth.token ? (
 
-            <NavLink to="/logged_in">
+            <NavLink to="/logged_in/profile">
             <img src={imageLogo} alt="logo-home" className="logoHome" />
             </NavLink>
           ) : (

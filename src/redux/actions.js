@@ -1,4 +1,6 @@
-import axios from "axios";
+// import axios from "axios";
+import axiosClient from "../config/axiosClient";
+
 import {
   ORDER_BY_NAME,
   FILTER_BY_BRAND,
@@ -24,7 +26,7 @@ import {
 export const getAllClothes = () => {
   return async function (dispatch) {
     try {
-      const all = await axios.get("http://localhost:3004/products");
+      const all = await axiosClient.get("/products");
       return dispatch({
         type: GET_ALL,
         payload: all.data,
@@ -38,8 +40,8 @@ export const getAllClothes = () => {
 export const filterByBrand = (brandName) => {
   return async function (dispatch) {
     try {
-      const response = await axios.get(
-        `http://localhost:3004/products/brands/${brandName}`
+      const response = await axiosClient.get(
+        `/products/brands/${brandName}`
       );
       return dispatch({
         type: FILTER_BY_BRAND,
@@ -117,8 +119,8 @@ export const decreaseQuantity = (itemId) => {
 export const searchName = (payload) => {
   return async function (dispatch) {
     try {
-      const productByName = await axios.get(
-        `http://localhost:3004/products/?name=${payload}`
+      const productByName = await axiosClient.get(
+        `/products/?name=${payload}`
       );
       return dispatch({
         type: SEARCH_NAME,
@@ -143,7 +145,7 @@ export const refresh = () => {
 export function getAllBrands() {
   return async function (dispatch) {
     try {
-      const response = await axios.get('http://localhost:3004/products/brands')
+      const response = await axiosClient.get('/products/brands')
       const brands = response.data
       dispatch({
         type: GET_ALL_BRANDS,
@@ -158,8 +160,8 @@ export function getAllBrands() {
 export const filterPriceAndBrand = (payload) => {
   return async function (dispatch) {
     try {
-      const filteredByBrandAndPrice = await axios.get(`
-      http://localhost:3004/products/filter?brandName=${payload.brand}&name=${payload.minPrice}&name=${payload.maxPrice}`);
+      const filteredByBrandAndPrice = await axiosClient.get(`
+      /products/filter?brandName=${payload.brand}&name=${payload.minPrice}&name=${payload.maxPrice}`);
       return dispatch({
         type: FILTER_BRAND_AND_PRICE,
         payload: filteredByBrandAndPrice.data,
@@ -174,8 +176,8 @@ export const filterPriceAndBrand = (payload) => {
 export const filterPrice = ({minPrice, maxPrice}) => {
   return async function (dispatch) {
     try {
-      const response = await axios.get(
-        `http://localhost:3004/products/filter?minPrice=${minPrice}&maxPrice=${maxPrice}`
+      const response = await axiosClient.get(
+        `/products/filter?minPrice=${minPrice}&maxPrice=${maxPrice}`
       );
       return dispatch({
         type: FILTER_BY_PRICE,
@@ -191,8 +193,8 @@ export const filterPrice = ({minPrice, maxPrice}) => {
 export const filterByBrandAndPrice = (brandName, minPrice, maxPrice) => {
   return async function (dispatch) {
     try {
-      const response = await axios.get(
-        `http://localhost:3004/products/filter?brandName=${brandName}&minPrice=${minPrice}&maxPrice=${maxPrice}`
+      const response = await axiosClient.get(
+        `/products/filter?brandName=${brandName}&minPrice=${minPrice}&maxPrice=${maxPrice}`
       );
 
       if (response.status === 200 && response.data.length > 0) {
@@ -213,18 +215,6 @@ export const filterByBrandAndPrice = (brandName, minPrice, maxPrice) => {
   };
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
 export const filterProducts = (brandName, minPrice, maxPrice) => {
   return async function (dispatch) {
     try {
@@ -236,7 +226,7 @@ export const filterProducts = (brandName, minPrice, maxPrice) => {
         url += `minPrice=${minPrice}&maxPrice=${maxPrice}`;
       }
 
-      const filteredProducts = await axios.get(url);
+      const filteredProducts = await axiosClient.get(url);
       return dispatch({
         type: FILTER_PRODUCTS,
         payload: filteredProducts.data,

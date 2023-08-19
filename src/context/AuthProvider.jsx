@@ -10,8 +10,8 @@ const AuthProvider = ({children}) => {
     const [auth, setAuth] = useState({})
     const [cargando, setCargando] = useState(true)
 
-    console.log(auth)
-    console.log(cargando)
+    // console.log(auth)
+    // console.log(cargando)
 
     const navigate = useNavigate()
 
@@ -40,7 +40,7 @@ const AuthProvider = ({children}) => {
             try {
                 const {data} = await axiosClient('/users/profile', config)
                 setAuth(data)
-                console.log(data)
+                // console.log(data)
                 navigate('/logged_in')
 
             } catch (error) {

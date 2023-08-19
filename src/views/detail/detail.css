@@ -107,3 +107,82 @@
     font-size: 22px;
     font-weight: bold;
 }
+
+.interactions{
+    display: flex;
+    background-color: whitesmoke;
+    color: rgb(55, 104, 136);
+    padding: 1rem;
+    gap: 4rem;
+     width: 100%;
+}
+
+.interaction{
+    display: flex;
+    margin-top: 1rem;
+    background-color: rgba(229, 223, 223, 0.863);
+    padding: 1rem;
+   
+}
+
+.myQuery{
+    background-color: rgba(234, 227, 227, 0.185);
+    padding: 1rem;
+    width: 30rem;
+}
+
+
+.user{
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+}
+
+.message{
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+}
+
+.inputName{
+    width: 100%;
+    height: 2.4rem;
+    margin: 0.5rem 0.1rem;
+}
+
+.textQuery{
+    width: 100%;
+    height: 10rem;
+  margin-bottom: 1.5rem;
+}
+
+.labelQuery{
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 0.8rem;
+}
+
+
+.btnSend{
+    background-color: rgb(22, 22, 52);
+    color: aliceblue;
+    padding: 0.5rem;
+    margin-top: 2rem;
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transición suave para el efecto hover */
+}
+
+.btnSend:hover {
+    background-color: #0e3e31; /* Cambio de color en el hover */
+    transform: scale(1.1); /* Agrandamiento en el hover */
+  }
+
+  .user{
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 30%;
+  }
+
+  .message{
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 100%;
+  }

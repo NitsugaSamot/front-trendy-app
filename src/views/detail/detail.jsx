@@ -1,13 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 import { addToCart } from "../../redux/actions";
+import { NavLink } from "react-router-dom";
+import Alerta from "../../components/Alerta/Alerta";
+import axiosClient from "../../config/axiosClient";
+import useAuth from "../../hooks/useAuth";
 import axios from 'axios';
 
 import Nav from "../../components/nav/nav";
 
 import './detail.css'
 import { useDispatch } from "react-redux";
+
+
 const Detail = () => {
   const { id } = useParams();
   const [garment, setGarment] = useState({});
@@ -16,9 +22,15 @@ const Detail = () => {
   const [colorsAvailable, setColorsAvailable] = useState([]);
   const [size, setSize] = useState("");
   const [stockComb, setStockComb] = useState(0);
+
+  const {auth} = useAuth()
+  const [query, setQuery] = useState({})
+  const [alerta, setAlerta] = useState({})
   const dispatch = useDispatch()
   // Estado para controlar la visualización del modal
   const [showModal, setShowModal] = useState(false);
+
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,11 +66,14 @@ const Detail = () => {
       price: garment.price,
       description: garment.description,
       stock: garment.stock,
+      interactions: garment.interactions,
       quantity: 1,
     };
     dispatch(addToCart(cartItem));
     setShowModal(true);
   };
+
+  console.log(garment.interactions)
 
   const handleClickStock = (event, stock = garment.stock) => {
     setColorsAvailable([])
@@ -82,6 +97,58 @@ const Detail = () => {
     }
   };
 
+  console.log(auth);
+
+  const handleSubmit = async e => {
+      e.preventDefault()
+
+      if ( !query.message) {
+        setAlerta({
+          msg: 'Todos los campos son obligatorios',
+          error: true
+        });
+        return;
+      }
+
+      try {
+
+
+         const requestData = {
+          userId: auth.id,
+          userName: auth.name,
+          message: query.message
+        };
+    
+
+         await axiosClient.post(`/products/${id}/add-query`, requestData)
+
+        setAlerta({
+          msg: 'Query sended',
+          error: false
+        })
+
+        setQuery({message: ''})
+
+            setGarment((prevGarment) => ({
+      ...prevGarment,
+      interactions: [
+        ...prevGarment.interactions,
+        requestData
+      ]
+    }));
+
+
+      } catch (error) {
+        console.log(error)
+      }
+  
+  }
+
+      setTimeout(() => {
+        setAlerta({})
+    }, 9000);
+
+  const { msg } = alerta
 
   return(
 
@@ -105,29 +172,7 @@ const Detail = () => {
               <hr />
               <h4 className="therealh4">${garment.price}</h4>
               <hr />
-              {/* <div className="containerBtn">
-            <button className="btnSize" onClick={handleClickStock} value="s">
-              s
-            </button>
-            <button className="btnSize" onClick={handleClickStock} value="m">
-              m
-            </button>
-            <button className="btnSize" onClick={handleClickStock} value="l">
-              l
-            </button>
-            <button className="btnSize" onClick={handleClickStock} value="xl">
-              xl
-            </button>
-          </div> */}
-{/* 
-          <div>
-            {colorsAvailable.map((color) => (
-              <button onClick={handleClickColor} name={color} key={color}>
-                {color}
-              </button>
-            ))}
-          </div> */}
-          {/* <div>{stockComb}</div> */}
+
           <h5>Check our stock!</h5>
               <div className="divButtons">
             <button className="buttonSize" onClick={handleClickStock} value="s">
@@ -169,8 +214,17 @@ const Detail = () => {
             {garment.description && <h5>{expanded ? garment.description : garment.description.slice(0, 99) + '...'}
             </h5>}
             <span style={{cursor: "pointer", marginLeft: "5px", color: "rgb(47, 203, 255)"}} onClick={toogleExpand}>{expanded ? 'Ver menos' : 'Ver mas'}</span>
+
+    
+            <hr />
+
+
+{/* 
+            <div>
+              {garment.interactions && <h5>{garment.interactions}</h5>}
+            </div> */}
             
-            {/* Botón para agregar la prenda al carrito */}
+
             <hr />
           <button onClick={handleAddToCart}>Añadir al carrito</button>
           
@@ -197,6 +251,62 @@ const Detail = () => {
       </div>
       </div>
       </div>
+      <div className="interactions">
+                {/* <h5>Consultation:</h5> */}
+
+
+
+                <div className="interactionsOtherUsers">
+                
+                    {garment.interactions && (
+                      <ul>
+                        {garment.interactions.map((interaction, index) => (
+                          <div className="interaction" key={index}>
+                            <div className="user">
+                                <p>{interaction.name}</p>
+                            </div>
+                            
+                            <div className="message">
+                                 
+                                <p>Message: {interaction.message}</p>
+                            </div>
+                            
+                          </div>
+                        ))}
+                      </ul>
+                    )}
+                </div>
+
+                <form action="" onSubmit={handleSubmit} className="myQuery">
+                  <h3>Type your query</h3>
+                  <label className="labelQuery" htmlFor="query">Send us your inquiry, the administrator will answer your questions as soon as possible</label>
+                  <input
+                        id="query"
+                        type="text"
+                        className="inputName" 
+                        // placeholder="Insert your name"
+                        value={auth.name}
+                        disabled
+
+                    />
+
+                    <input
+                        id="query"
+                        type="text"
+                        className="textQuery" 
+                        placeholder="Insert your question"
+                        value={query.message} 
+                        onChange={e => setQuery({ ...query, message: e.target.value })} 
+                        // onChange={e => setQuery(e.target.value)}
+                        
+                    />
+
+                      {msg && <Alerta alerta={alerta}/>}
+
+                    <input type="submit" value="Send" className="btnSend" />
+                </form>
+
+          </div>
     </div>
   )
 };

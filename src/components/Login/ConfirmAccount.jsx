@@ -12,6 +12,7 @@ const ConfirmAccount = () => {
 
   const params = useParams()
   const { id } = params //desestructuramos extrayendo id de params
+  console.log(params)
 
   useEffect(() => {
     const ConfirmAccount = async () => {
