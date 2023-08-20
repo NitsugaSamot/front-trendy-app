@@ -65,7 +65,7 @@ function App() {
             </Route>
           </Route>
           <Route path="/dashboard" element={<Sidebar />}>
-            <Route index element={< Inicio /> }/> 
+            <Route index element={<Inicio /> }/> 
             <Route path="usuarios" element={<Clients />} />
             <Route path="ventas" element={<Sales />} /> 
             <Route path="comentarios" element={<Coments />} />

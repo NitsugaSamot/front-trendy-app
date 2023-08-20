@@ -5,6 +5,7 @@ import Filter from "../../components/filter/filter";
 import Paginate from '../../components/paginate/paginate';
 import banner from '../../assets/Home.png'
 import "./home.css";
+import { NavLink } from 'react-router-dom';
 
 const Home = () => {
   const allClothes1 = useSelector((state) => state.allClothes1);
