@@ -17,6 +17,12 @@ import { AuthProvider } from "./contextClient/context/authProvider";
 import ContextUser from "./components/cart/contextUser";
 import { getAllClothes, initializeCart } from "./redux/actions";
 import "./App.css";
+import Sidebar from "./views/dashboard/sidebar/sidebar";
+import Inicio from "./views/dashboard/pages/inicio";
+import Clients from "./views/dashboard/pages/clients";
+import Sales from "./views/dashboard/pages/sales";
+import Coments from "./views/dashboard/pages/coments";
+import UpdateProduct from "./views/dashboard/pages/updateProduct";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,7 +37,7 @@ function App() {
   const location = useLocation();
 
   // Define las rutas en las que no quieres mostrar el componente Nav
-  const pathsWithoutNav = ["/login", "/register", "/confirm", "/logged_in"];
+  const pathsWithoutNav = ["/login", "/register", "/confirm", "/logged_in", '/dashboard'];
 
   const shouldShowNav = !pathsWithoutNav.some((path) =>
     location.pathname.startsWith(path)
@@ -57,6 +63,13 @@ function App() {
             <Route path="/logged_in" element={<ProtectedRoutes />}>
               <Route index element={<ContextUser />} />
             </Route>
+          </Route>
+          <Route path="/dashboard" element={<Sidebar />}>
+            <Route index element={< Inicio /> }/> 
+            <Route path="usuarios" element={<Clients />} />
+            <Route path="ventas" element={<Sales />} /> 
+            <Route path="comentarios" element={<Coments />} />
+            <Route path="products" element={<UpdateProduct />} />
           </Route>
         </Routes>
       </AuthProvider>

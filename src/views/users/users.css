@@ -1,0 +1,17 @@
+.ContEXT {
+
+
+}
+.ContINT {
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+.DeleteUser {
+    margin-left: 15px;
+}
+.UserCardsConteiner {
+    display: flex;
+    margin-top: 5px;
+}
