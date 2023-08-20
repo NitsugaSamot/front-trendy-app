@@ -17,7 +17,7 @@ const ConfirmAccount = () => {
       try {
         // const url = `https://back-trendy-app.up.railway.app/users/confirm/${id}`;
         const { data } = await axios.post(
-          `https://back-trendy-app.up.railway.app/users/confirm/${id}`
+          `https://back-trendy-app.up.railway.app/users/confirm`
         );
 
         console.log(data);
