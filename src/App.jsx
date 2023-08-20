@@ -49,7 +49,7 @@ function App() {
             <Route path="create" element={<CreateProduct />} />
             <Route path="login" element={<Login />} />
             <Route path="login/register" element={<Register />} />
-            <Route path="confirm/:id" element={<ConfirmAccount />} />
+            <Route path="confirm" element={<ConfirmAccount />} />
             <Route path="reset-password" element={<ForgetPassword />} />
             <Route path="new-password/:token" element={<NewPassword />} />
             <Route path="/confirmation" element={<ConfirmationPage />} />
