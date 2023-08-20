@@ -13,11 +13,10 @@ const ConfirmAccount = () => {
   const { id } = params; //desestructuramos extrayendo id de params
 
   useEffect(() => {
-    const confirmAccount = async () => {
+    const ConfirmAccount = async () => {
       try {
-        // const url = `https://back-trendy-app.up.railway.app/users/confirm/${id}`;
         const { data } = await axios.post(
-          `https://back-trendy-app.up.railway.app/users/confirm`
+          "https://back-trendy-app.up.railway.app/users/confirm"
         );
 
         console.log(data);
@@ -33,7 +32,7 @@ const ConfirmAccount = () => {
         });
       }
     };
-    confirmAccount();
+    ConfirmAccount();
   }, []);
 
   const { msg } = alert;
