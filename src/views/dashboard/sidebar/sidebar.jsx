@@ -1,5 +1,5 @@
 import { Link as NavLink, Outlet } from "react-router-dom";
-import { FaHome, FaUser, FaCommentDots, FaDollarSign } from "react-icons/fa";
+import { FaHome, FaUser, FaCommentDots, FaDollarSign } from 'react-icons/fa'
 import NavD from "../navD/navD";
 
 import "./sidebar.css";
