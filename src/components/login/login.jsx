@@ -42,6 +42,7 @@ const Login = () => {
       // navigate('/')
       navigate("/logged_in");
     } catch (error) {
+      console.log(error.response.data.msg);
       setAlert({
         msg: error.response.data.msg,
         error: true,
