@@ -1,6 +1,7 @@
 import { useState, useEffect, createContext } from "react";
 import { useNavigate } from "react-router-dom";
-import axiosClient from "../config/axiosClient";
+/* import axiosClient from "../config/axiosClient"; */
+import axios from "axios";
 
 const AuthContext = createContext()
 
@@ -38,7 +39,7 @@ const AuthProvider = ({children}) => {
             }
             
             try {
-                const {data} = await axiosClient('/users/profile', config)
+                const {data} = await axios('https://back-trendy-app.up.railway.app/users/profile', config)
                 setAuth(data)
                 console.log(data)
                 navigate('/logged_in')
