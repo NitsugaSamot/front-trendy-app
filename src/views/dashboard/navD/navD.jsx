@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import  Offcanvas from 'react-bootstrap';
+import  Offcanvas from 'react-bootstrap/Offcanvas';
 
 const NavD = () => {
     const [showOffcanvas, setShowOffcanvas] = useState(false);
