@@ -4,4 +4,4 @@ const Coments = () => {
     )
   }
    
-  export default Coments;
+  export default Coments;

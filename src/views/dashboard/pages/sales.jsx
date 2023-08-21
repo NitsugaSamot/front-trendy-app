@@ -4,4 +4,4 @@ const Sales = () => {
     )
   }
    
-  export default Sales;
+  export default Sales;

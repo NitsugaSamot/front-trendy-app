@@ -30,4 +30,4 @@ const NavD = () => {
     );
 };
 
-export default NavD;
+export default NavD;
