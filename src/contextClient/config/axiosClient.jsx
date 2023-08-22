@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-  baseURL: `${import.meta.env.REACT_APP_RAILWAY_BACKEND_URL}`,
+  baseURL: `${import.meta.env.VITE_BACKEND}`,
 });
 
 export default axiosClient;
