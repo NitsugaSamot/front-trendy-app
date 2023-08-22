@@ -3,7 +3,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { initMercadoPago } from "@mercadopago/sdk-react";
 import { NavLink } from "react-router-dom";
 import useAuth from "../../contextClient/hooks/useAuth";
@@ -26,7 +26,6 @@ const Nav = () => {
 
   initMercadoPago("APP_USR-d7ee1f6e-0196-45be-81ed-388bfebc9319");
   const location = useLocation();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
 
@@ -88,7 +87,6 @@ const Nav = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(searchName(search));
-    navigate("/");
     setSearch("");
   };
 
