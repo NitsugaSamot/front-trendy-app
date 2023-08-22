@@ -119,7 +119,7 @@ const Nav = () => {
       )}
 
       {/* Formulario de búsqueda */}
-      {!location.pathname.startsWith("/detail") && (
+      {!location.pathname.startsWith("/detail") && !location.pathname.startsWith("/dashboard") && (
         <form onSubmit={handleSubmit}>
           <input
             className="search"
