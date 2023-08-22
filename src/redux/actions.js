@@ -13,7 +13,8 @@ import {
   INCREASE_QUANTITY,
   DECREASE_QUANTITY,
 } from "./action-types";
-import.meta.env.VITE_BACKEND
+const VITE_BACKEND = import.meta.env.VITE_BACKEND;
+
 
 
 export const getAllClothes = () => {
@@ -43,7 +44,7 @@ export const searchName = (payload) => {
   return async function (dispatch) {
     try {
       const productByName = await axios.get(
-        `https://back-trendy-app.up.railway.app/products/?name=${payload}`
+        `${VITE_BACKEND}/products/?name=${payload}`
       );
       return dispatch({
         type: SEARCH_NAME,
@@ -68,7 +69,7 @@ export const filterByBrand = (brandName) => {
   return async function (dispatch) {
     try {
       const response = await axios.get(
-        `https://back-trendy-app.up.railway.app/products/brands/${brandName}`
+        `${VITE_BACKEND}/products/brands/${brandName}`
       );
       return dispatch({
         type: FILTER_BY_BRAND,
@@ -84,7 +85,7 @@ export const filterPrice = ({ minPrice, maxPrice }) => {
   return async function (dispatch) {
     try {
       const response = await axios.get(
-        `https://back-trendy-app.up.railway.app/products/filter?minPrice=${minPrice}&maxPrice=${maxPrice}`
+        `${VITE_BACKEND}/products/filter?minPrice=${minPrice}&maxPrice=${maxPrice}`
       );
       return dispatch({
         type: FILTER_BY_PRICE,
