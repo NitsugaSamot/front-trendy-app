@@ -37,17 +37,3 @@ button:hover {
   transform: translatey(-2px);
   box-shadow: 1px 6px 17px 0px rgb(47, 203, 255);
 }
-
-
-/* @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */

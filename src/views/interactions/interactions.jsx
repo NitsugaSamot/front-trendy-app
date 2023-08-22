@@ -20,54 +20,6 @@ const Interactions = () => {
     dispatch(addToCart(cartItem));
     // setShowModal(true);
   };
-
-    // const handleSubmit = async e => {
-  //     e.preventDefault()
-
-  //     if ( !query.message) {
-  //       setAlerta({
-  //         msg: 'Debes enviar un mensaje',
-  //         error: true
-  //       });
-  //       return;
-  //     }
-
-  //     try {
-  //        const requestData = {
-  //         userId: auth.id,
-  //         userName: auth.name,
-  //         message: query.message
-  //       };
-    
-
-  //        await axiosClient.post(`/products/${id}/add-query`, requestData)
-
-  //       setAlerta({
-  //         msg: 'Query sended',
-  //         error: false
-  //       })
-
-  //       setQuery({message: ''})
-
-  //           setGarment((prevGarment) => ({
-  //     ...prevGarment,
-  //     interactions: [
-  //       ...prevGarment.interactions,
-  //       requestData
-  //     ]
-  //   }));
-
-
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  
-  // }
-
-  //     setTimeout(() => {
-  //       setAlerta({})
-  //   }, 9000);
-
   const handleSubmit = async e => {
     e.preventDefault()
 
@@ -118,44 +70,6 @@ const Interactions = () => {
   }, 9000);
 
 const { msg } = alerta
-//   const handleSubmit = async e => {
-//     e.preventDefault();
-
-//     if (!query.message) {
-//       setAlerta({
-//         msg: "Debes enviar un mensaje",
-//         error: true,
-//       });
-//       return;
-//     }
-
-//     try {
-//       const requestData = {
-//         userId: auth.id,
-//         userName: auth.name,
-//         message: query.message,
-//       };
-
-//       await axiosClient.post(`/products/${id}/add-query`, requestData);
-
-//       setAlerta({
-//         msg: "Query sent",
-//         error: false,
-//       });
-
-//       updateInteractions(requestData);
-
-//       setQuery({ message: "" });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-
-//   setTimeout(() => {
-//     setAlerta({});
-//   }, 9000);
-
-//   const { msg } = alerta;
 
   return (
     <div className="interactions">
@@ -177,21 +91,6 @@ const { msg } = alerta
                         ))}
                       </ul>
                     )}
-        {/* {interactions && (
-          <ul>
-            {interactions.map((interaction, index) => (
-              <div className="interaction" key={index}>
-                <div className="user">
-                  <p>{interaction.name}</p>
-                </div>
-
-                <div className="message">
-                  <p>{interaction.message}</p>
-                </div>
-              </div>
-            ))}
-          </ul>
-        )} */}
       </div>
 
       <form action="" onSubmit={handleSubmit} className="myQuery">

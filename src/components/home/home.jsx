@@ -5,7 +5,7 @@ import banner from '../../assets/Home.png'
 import Filter from "../filter/filter";
 import { useSelector } from "react-redux";
 
-import img from "../../../../frontend/whatsapp-fill.svg"
+import img from "../../assets/whatsapp-fill.svg";
 
 const Home = () => {
   const allClothes1 = useSelector((state) => state.allClothes1);
