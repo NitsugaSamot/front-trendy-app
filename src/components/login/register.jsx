@@ -164,7 +164,7 @@ const Register = () => {
           <Link className="linksRegister" to="/login">
             ¿Tienes una cuenta? Inicia Sesión
           </Link>
-          <Link className="linksRegister" to="/olvide-password">
+          <Link className="linksRegister" to="/reset-password">
             Olvidé Mi Password
           </Link>
         </nav>
