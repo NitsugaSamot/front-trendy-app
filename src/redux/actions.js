@@ -1,3 +1,4 @@
+import axios from 'axios'
 import {
   ORDER_BY_NAME,
   FILTER_BY_BRAND,
@@ -17,9 +18,7 @@ import axiosClient from "../contextClient/config/axiosClient";
 export const getAllClothes = () => {
   return async function (dispatch) {
     try {
-      const all = await axiosClient.get(
-        "/products"
-      );
+      const all = await axiosClient.get("/products");
       return dispatch({
         type: GET_ALL,
         payload: all.data,
