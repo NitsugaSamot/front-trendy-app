@@ -117,7 +117,7 @@ const Nav = () => {
       )}
 
       {/* Formulario de búsqueda */}
-      {!location.pathname.startsWith("/detail") && !location.pathname.startsWith("/dashboard") && (
+      {!location.pathname.startsWith("/detail") && !location.pathname.startsWith("/create") && (
         <form onSubmit={handleSubmit}>
           <input
             className="search"
