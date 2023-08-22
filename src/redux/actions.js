@@ -13,12 +13,13 @@ import {
   INCREASE_QUANTITY,
   DECREASE_QUANTITY,
 } from "./action-types";
-import axiosClient from "../contextClient/config/axiosClient";
+import.meta.env.VITE_BACKEND
+
 
 export const getAllClothes = () => {
   return async function (dispatch) {
     try {
-      const all = await axiosClient.get("/products");
+      const all = await axios.get(`${VITE_BACKEND}/products`);
       return dispatch({
         type: GET_ALL,
         payload: all.data,
