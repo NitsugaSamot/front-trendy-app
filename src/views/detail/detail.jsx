@@ -14,6 +14,7 @@ import Nav from "../../components/nav/nav";
 
 import "./detail.css";
 import { useDispatch, useSelector } from "react-redux";
+import useAuth from "../../contextClient/hooks/useAuth";
 const Detail = () => {
   const { id } = useParams();
   const [garment, setGarment] = useState({});
@@ -34,7 +35,7 @@ const Detail = () => {
 
   const cart = useSelector((state) => state.cart);
   console.log(cart);
-
+  const { auth } = useAuth();
   const selectedSizeClass = (size) =>
     classnames("buttonSize", {
       seleccionado: selectedSize === size,
@@ -45,8 +46,82 @@ const Detail = () => {
       seleccionado: selectedColor === color,
     });
   //-----------------------------------------------------------------
+//*********************************************************** */
+   //-------------------------- VALORACIÓN
+   const [rating, setRating] = useState(0); // Inicializa con 0 estrellas
+   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+   const [ promedio, setPromedio ] = useState(0) //
+   const [usuario, setUsuario ] = useState(null)
+ 
+ 
+ 
+   const calcularPromedio = (ratings) => {
+     const sum = ratings.reduce((total, rating) => total + rating, 0);
+     return sum / ratings.length || 0;
+   }
+ 
+   const handleRating = (selectedRating) => {
+     setRating(selectedRating);
+   };
+   const handleSubmitRating = async () => {
+    try {
+      if (usuario && usuario.purchaseOrder) {
+        const productInPurchaseOrder = usuario.purchaseOrder.find(
+          (order) => order.id === parseInt(id)
+        );
+      
+        if ( productInPurchaseOrder.purchaseOrder.rating === false && productInPurchaseOrder) {
+          console.log(usuario.id);
+          console.log(id);
+          const setearPurchase = await axios.put("https://back-trendy-app.up.railway.app/users/setPurchase",{
+            id: usuario.id,
+            idProduct: id,
+          })
+          const response = await axios.put(
+            "https://back-trendy-app.up.railway.app/users/ratingTrue",
+            { userId: auth.id, idProduct: id } // Envío el id y la valoración del producto 
+          );
+          console.log(userId, idProduct)
+          setRating(0); // Reinicia el estado de la valoración
+          setShowSuccessAlert(true); // Me muestra un alert de que se envio la valoración
+          console.log(response.data); // Muestro lo  que me devuelve el back
+        } else {
+          console.log("El usuario no ha comprado este producto o ya hizo una valoración.");
+        }
+      } else {
+        console.log("No se pudo verificar la información del usuario.");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+    // VALORACIÓNNNN-------------------------------------------------------------------
 
-  useEffect(() => {
+
+    useEffect(() => {
+      const valoracion = async () => {
+          try {
+              if (auth.id) {
+                  const response = await axios.get(`https://back-trendy-app.up.railway.app/users/${auth.id}`);
+                  setUsuario(response.data);
+                  console.log(response.data.purchaseOrder[0].rating);
+  
+                  
+              }
+          } catch (error) {
+              console.log(error);
+          }
+      };
+  
+      valoracion();
+  }, [auth.id]);
+  //------------------------------------------------------------------------------
+  
+
+
+
+//**************************************************************** */
+useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
@@ -54,6 +129,10 @@ const Detail = () => {
         );
         const { data } = response;
         setGarment(data);
+                //Recivo lo que hay en ratings
+                const ratings = data.ratings || []; // Asegúrate de manejar el caso cuando ratings es null
+                const promedio = calcularPromedio(ratings);
+                setPromedio(promedio)
       } catch (error) {
         window.alert("Error al obtener los datos del personaje");
       }
@@ -306,6 +385,36 @@ const Detail = () => {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <hr />
+      <div className="interaction-container">
+        <div>
+          <h2>RATE THE PRODUCT</h2>
+          {
+            <div className="rating">
+              {[1, 2, 3, 4, 5].map((estrellas) => (
+                <span key={estrellas}
+                  className={`estrellas ${rating >= estrellas ? "active" : ""}`}
+                  onClick={() => handleRating(estrellas)}
+                >
+                  ★
+                </span>
+              ))}
+            </div>
+          }
+          <button onClick={handleSubmitRating}>Enviar Valoración</button>
+          {showSuccessAlert && (
+            <div className="alert alert-success d-flex align-items-center" role="alert">
+              <svg className="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                <use xlinkHref="#check-circle-fill" />
+              </svg>
+              <div>
+                Valoración enviada con éxito.
+              </div>
+            </div>
+          )}
+
         </div>
       </div>
     </div>

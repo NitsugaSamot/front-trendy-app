@@ -87,7 +87,7 @@ const CardProductEdit = ({ showProduct, onSuccessfulUpdate }) => {
     <div>
       <h1>{showProduct.name}</h1>
       <label>New price: 
-        <input name="price" value={productEdit.price} onChange={handleProductEdit}></input>
+        <input type="number" name="price" value={productEdit.price} onChange={handleProductEdit}></input>
         {error.price && <span>{error.price}</span>} 
       </label>
       <label>New description: 
