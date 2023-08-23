@@ -147,6 +147,7 @@
 }
 
 .quantity-button {
+    width: 2rem;
     margin: 8px
 }
 
@@ -156,44 +157,48 @@
 
 .empty-cart-button {
     border: none;
-    background-color: rgb(23, 10, 10);
     color: #fff;
-    padding: 10px;
-    display: block;
-    background-color: #000;
-    margin-right: 2%;
-    margin-left: 2%;
-    width: 100%;
-    height: 4rem;
+    background-color: #00000039;
+    width: 15rem;
+    height: 2.5rem;
     border-radius: 5px;
     font-family: inherit;
+    margin: 0.5rem;
     font-weight: bold;
     transition: all .3s ease;
     margin-top: 15px;
+ 
 }
-
+.empty-cart-button:hover {
+    transform: none;
+    box-shadow: none;
+    transition: none;
+    cursor: pointer;
+}
 
 .buy {
     border: none;
-    background-color: green;
     color: #fff;
-    padding: 10px;
-    display: block;
-    width: 100%;
+    background-color: green;
+    width: 15rem;
+    height: 2.5rem;
     border-radius: 5px;
     font-family: inherit;
-    font-size: 16px;
+    margin: 0.5rem;
+    font-weight: bold;
     transition: all .3s ease;
     margin-top: 15px;
-    transition: all 0.3s ease;
 }
 
 .buy:hover {
     background-color: #088034;
     /* Cambio de color en el hover */
     transform: scale(1.1);
-    /* Agrandamiento en el hover */
+    /* Agrandamiento en el hover */
 }
+
+
+
 
 .alert {
     background-color: rgba(255, 255, 255, 0.5);
