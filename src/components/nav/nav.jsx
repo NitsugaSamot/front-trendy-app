@@ -98,12 +98,12 @@ const Nav = () => {
   };
 
   const searchAdmin = async () => {
-    const {id} = auth;
-    const {data} = await axios.get(`https://back-trendy-app.up.railway.app/users/${id}`);
+    const { id } = auth;
+    const { data } = await axios.get(`https://back-trendy-app.up.railway.app/users/${id}`);
     setAdmin(data);
     console.log(data)
   };
-  if(admin.id !== auth.id && admin === "") {
+  if (admin.id !== auth.id && admin === "") {
     searchAdmin();
     console.log(admin)
   }
@@ -123,7 +123,7 @@ const Nav = () => {
       )}
       {admin.type == 1 && (
         <NavLink to="/dashboard">
-          <button style={{width: '5rem', height: '2rem'}} className="btnSearch">Admin</button>
+          <button style={{ width: '5rem', height: '2rem' }} className="btnSearch">Admin</button>
         </NavLink>
       )}
 
@@ -171,66 +171,84 @@ const Nav = () => {
             <div className="cart-items">
               {/* Mostrar los elementos en el carrito */}
               {cart.map((item) => (
-                <div key={item.id} className="cart-item">
-                  <p>{item.name}</p>
-                  <hr />
-                  <p>{item.size}</p>
-                  <hr />
-                  <p>{item.color}</p>
-                  <button
-                    className="quantity-button"
-                    onClick={() =>
-                      handleDecrement(item.id, item.size, item.color)
-                    }
-                  >
-                    -
-                  </button>
-                  <p>Cantidad: {item.quantity}</p>
-                  <button
-                    className="quantity-button"
-                    onClick={() =>
-                      handleIncrement(item.id, item.size, item.color)
-                    }
-                  >
-                    +
-                  </button>
-                  <div></div>
-                  <p>Precio: ${item.price * item.quantity}</p>
-                  {/* Botón para eliminar un elemento del carrito */}
-                  <button
-                    className="remove-button"
-                    onClick={() =>
-                      dispatch(removeFromCart(item.id, item.color, item.size))
-                    }
-                  >
-                    🗑
-                  </button>
+
+                <div key={item.id} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '4px' }}>
+                  <div style={{ backgroundColor: 'rgb(47, 203, 255)', color: 'white', padding: '3px', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+                    <h6 style={{ fontWeight: 'bold' }}>{item.name}</h6>
+                    <div>
+                      <h7 style={{ margin: '5px', fontWeight: 'bold' }}>Talle: {item.size.toUpperCase()}</h7>
+                      <h7 style={{ margin: '5px', fontWeight: 'bold' }}>/ Color: {item.color[0].toUpperCase() + item.color.slice(1)}</h7>
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <div style={{ padding: '3px', marginLeft: '50px' }}>
+                      <button
+                        className="quantity-button"
+                        onClick={() =>
+                          handleDecrement(item.id, item.size, item.color)
+                        }
+                      > - </button>
+                      <button
+                        className="quantity-button"
+                        onClick={() =>
+                          handleIncrement(item.id, item.size, item.color)
+                        }
+                      >
+                        +
+                      </button>
+                      <p>Cantidad: {item.quantity}</p>
+                    </div>
+
+                    <div style={{ padding: '3px', marginLeft: '50px', marginRight: '50px' }}>
+                      <p style={{ margin: '1px', fontWeight: 'bold', color: 'Green' }}>Precio: ${item.price * item.quantity}</p>
+                      {/* Botón para eliminar un elemento del carrito */}
+                      <button
+                        className="remove-button"
+                        onClick={() =>
+                          dispatch(removeFromCart(item.id, item.color, item.size))
+                        }
+                      >
+                        🗑
+                      </button>
+                    </div>
+                  </div>
+
                 </div>
               ))}
             </div>
             {/* Mostrar el precio total del carrito */}
-            <div className="cart-total">Total: ${totalPrice}</div>
+            <div style={{ fontWeight: 'bold', color: 'Green' }}>Total: ${totalPrice}</div>
             {/* Botón para vaciar el carrito */}
 
             <div className="maxDiv">
-              <button className="empty-cart-button" onClick={handleEmptyCart}>
-                Empty Cart
-              </button>
+
 
               {auth.token ? (
-                <button className="buy" onClick={handleBuy}>
-                  Buy
-                </button>
-              ) : (
                 <>
-                  <button className="empty-cart-button buyDisabled" disabled>
-                    Buy 2
+                  <button style={{ backgroundColor: 'red' }} className="buy" onClick={handleEmptyCart}>
+                    Empty Cart
                   </button>
-                  <p className="alert">
-                    Ten en cuenta que debes estar logeado para poder concretar
-                    la compra
-                  </p>
+                  <button className="buy" onClick={handleBuy}>
+                    Buy
+                  </button>
                 </>
+              ) : (
+                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                  <div style={{ display: "flex", justifyContent: 'center', alignItems: 'center', width: '15rem' }}>
+                    <button className="empty-cart-button" onClick={handleEmptyCart}>
+                      Empty Cart
+                    </button>
+                    <button className="empty-cart-button" disabled>
+                      Buy
+                    </button>
+                  </div>
+                  <div>
+                    <p style={{ marginTop: '0.5rem', color: 'red' }}>
+                      Debes estar logeado para concretar la compra
+                    </p>
+                  </div>
+                </div>
               )}
             </div>
           </div>
@@ -239,9 +257,9 @@ const Nav = () => {
 
       {auth.token ? (
 
-          <button className="btnSearch" onClick={closeSession}>
-            Log Out
-          </button>
+        <button className="btnSearch" onClick={closeSession}>
+          Log Out
+        </button>
 
       ) : (
         <NavLink to="/login">
