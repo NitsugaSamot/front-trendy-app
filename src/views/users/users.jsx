@@ -37,7 +37,7 @@ const Users = () => {
     return (
         <div className="ContEXT">
             <div className="ContINT">
-                {users.map((user, index) => (
+                {users?.map((user, index) => (
                     <div className='UserCardsConteiner' key={index}>
                         <UserCard user={user} />
                         <button className='DeleteUser' id={user.id} onClick={handleIsDelete}>boton</button>
