@@ -28,6 +28,7 @@ const Nav = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
+  const [admin, setAdmin] = useState("")
 
   // Obtener el estado del carrito desde el store usando useSelector
   const cart = useSelector((state) => state.cart);
@@ -102,6 +103,15 @@ const Nav = () => {
     });
   };
 
+  const searchAdmin = async () => {
+    const {id} = auth;
+    const {data} = await axios.get(`https://back-trendy-app.up.railway.app/users/${id}`);
+    setAdmin(data);
+  };
+  if(admin === "" || admin.id !== auth.id) {
+    searchAdmin();
+  }
+
   return (
     <div className="containerNav">
       {/* Logo del enlace de inicio */}
@@ -113,6 +123,11 @@ const Nav = () => {
       ) : (
         <NavLink to="/">
           <img src={imageLogo} alt="logo-home" className="logoHome" />
+        </NavLink>
+      )}
+      {admin.type === 1 && (
+        <NavLink to="/dashboard">
+          <button style={{width: '5rem', height: '2rem'}} className="btnSearch">Admin</button>
         </NavLink>
       )}
 
