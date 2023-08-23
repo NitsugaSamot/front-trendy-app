@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../contextClient/hooks/useAuth";
-import axiosClient from "../../contextClient/config/axiosClient";
+import axios from "axios";
+//import axiosClient from "../../contextClient/config/axiosClient";
 import './profileStyles.css'
 
 const Purchases = () => {
@@ -9,7 +10,7 @@ const Purchases = () => {
 
   useEffect(() => {
     if (auth) {
-      axiosClient.get(`/users/${auth.id}/purchases`)
+      axios.get(`https://back-trendy-app.up.railway.app/users/${auth.id}/purchases`)
         .then(response => {
           setPurchases(response.data);
         })
