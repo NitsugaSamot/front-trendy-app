@@ -78,12 +78,6 @@ const Nav = () => {
     dispatch(decreaseQuantity(itemId, size, color));
   };
 
-  // Manejar la acción de refrescar la lista de prendas
-  const handleRefresh = () => {
-    dispatch(getAllClothes());
-    window.scrollTo(0, 500);
-  };
-
   // Manejar el envío del formulario de búsqueda
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -109,7 +103,7 @@ const Nav = () => {
     setAdmin(data);
     console.log(data)
   };
-  if(admin === "" || admin.id !== auth.id) {
+  if(admin.id !== auth.id && admin === "") {
     searchAdmin();
     console.log(admin)
   }
@@ -149,12 +143,6 @@ const Nav = () => {
         </form>
       )}
 
-      {/* Botón de refrescar en la página principal */}
-      {location.pathname === "/" || location.pathname === "/logged_in" ? (
-        <button className="btnRefresh" onClick={handleRefresh}>
-          Refresh
-        </button>
-      ) : null}
       {/* Enlace para crear una nueva prenda */}
       <NavLink to="/create">
         <button className="btnSearch">create</button>

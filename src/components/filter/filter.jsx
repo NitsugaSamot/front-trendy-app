@@ -55,9 +55,19 @@ const Filter = ({ onPageChange }) => {
     
     onPageChange(1);
   };
+  const handleRefresh = () => {
+    dispatch(getAllClothes());
+    window.scrollTo(0, 450);
+  };
 
   return (
     <div className="navbar navbar-expand-lg bg-body-tertiary containerFilter">
+      {/* Botón de refrescar en la página principal */}
+      {location.pathname === "/" || location.pathname === "/logged_in" ? (
+        <button className="btnRefresh" onClick={handleRefresh}>
+          Clear filters
+        </button>
+      ) : null}
       <h4>Order</h4>
       <select className="form-select" name="order" onChange={handleOrderSelect}>
         <option value="" disabled>
