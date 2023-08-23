@@ -107,9 +107,11 @@ const Nav = () => {
     const {id} = auth;
     const {data} = await axios.get(`https://back-trendy-app.up.railway.app/users/${id}`);
     setAdmin(data);
+    console.log(data)
   };
   if(admin === "" || admin.id !== auth.id) {
     searchAdmin();
+    console.log(admin)
   }
 
   return (
