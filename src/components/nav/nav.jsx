@@ -81,7 +81,7 @@ const Nav = () => {
       });
   
       // Realizar la acción de crear la preferencia de MercadoPago
-      const response = await axiosClient.post("/mercadopago/order", orderData);
+      const response = await axios.post("https://back-trendy-app.up.railway.app/mercadopago/order", orderData);
       const link = response.data.response.body.init_point;
       window.location.href = link;
   
