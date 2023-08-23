@@ -52,24 +52,64 @@ const Nav = () => {
     price: totalPrice,
   };
 
-  const handleBuy = () => {
-    const createPreference = async () => {
-      try {
-        const response = await axios.post(
-          "https://back-trendy-app.up.railway.app/mercadopago/order",
-          orderData
-        );
-        const link = response.data.response.body.init_point;
-        window.location.href = link;
-        handleEmptyCart();
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-
-    // Llamar a la función para crear la preferencia al hacer clic en el botón "Buy"
-    createPreference();
+    const savePurchases = {
+    items: cart.map(item => ({
+      id: item.id,
+      title: item.name,
+      price: item.price,
+      description: item.description,
+      quantity: item.quantity,
+    })),
+    total: totalPrice,
   };
+
+    const handleBuyAndConfirm = async () => {
+    event.preventDefault();
+  
+    try {
+      savePurchases.items.forEach(async (item) => {
+        const { id, title, price, quantity, description } = item;
+        // Realizar la acción de confirmar la compra para cada producto
+        await axios.post(`https://back-trendy-app.up.railway.app/users/${auth.id}/purchases`, {
+          id,
+          name: title,
+          price,
+          quantity,
+          description,
+          rating: false
+        });
+      });
+  
+      // Realizar la acción de crear la preferencia de MercadoPago
+      const response = await axios.post("https://back-trendy-app.up.railway.app/mercadopago/order", orderData);
+      const link = response.data.response.body.init_point;
+      window.location.href = link;
+  
+      // Vaciar el carrito
+      handleEmptyCart();
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  // const handleBuy = () => {
+  //   const createPreference = async () => {
+  //     try {
+  //       const response = await axios.post(
+  //         "https://back-trendy-app.up.railway.app/mercadopago/order",
+  //         orderData
+  //       );
+  //       const link = response.data.response.body.init_point;
+  //       window.location.href = link;
+  //       handleEmptyCart();
+  //     } catch (error) {
+  //       console.log(error.message);
+  //     }
+  //   };
+
+  //   // Llamar a la función para crear la preferencia al hacer clic en el botón "Buy"
+  //   createPreference();
+  // };
 
   const handleIncrement = (itemId, size, color) => {
     dispatch(increaseQuantity(itemId, size, color));
@@ -230,7 +270,7 @@ const Nav = () => {
                   <button style={{ backgroundColor: 'red' }} className="buy" onClick={handleEmptyCart}>
                     Empty Cart
                   </button>
-                  <button className="buy" onClick={handleBuy}>
+                  <button className="buy" onClick={handleBuyAndConfirm}>
                     Buy
                   </button>
                 </>
