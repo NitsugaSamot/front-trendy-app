@@ -1,0 +1,63 @@
+.profileNav{
+    background-color: rgb(17, 76, 95);
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+}
+
+.logoHomeProfile{
+    width: 8rem;
+}
+
+.navLink{
+    margin: 0 auto;
+    /* background-color: rgb(104, 168, 224); */
+    color: white;
+  
+}
+
+.p-nav{
+    margin-top: 2.5rem;
+    padding: 0.5rem;
+}
+
+
+.profileForm{
+    margin-top: 2rem;
+    background-color: aliceblue;
+    padding: 6rem;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 85%;
+}
+
+.inputProfile{
+    width: 20rem;
+    height: 2.8rem;
+}
+
+.btnEditProfile{
+    background-color: rgb(17, 76, 95);
+}
+
+.divPurchases{
+    background-color: rgb(17, 76, 95);
+    color: rgb(176, 205, 230);
+
+}
+
+.titlePurchase{
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+}
+
+.purchases{
+    display: flex;
+   gap: 1rem;
+}
+
+.purchase{
+    width: 90%;
+    gap: 1rem;
+}

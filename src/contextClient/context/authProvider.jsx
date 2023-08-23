@@ -11,8 +11,8 @@ const AuthProvider = ({children}) => {
     const [auth, setAuth] = useState({})
     const [cargando, setCargando] = useState(true)
 
-    console.log(auth)
-    console.log(cargando)
+/*     console.log(auth)
+    console.log(cargando) */
 
     const navigate = useNavigate()
 
@@ -61,6 +61,63 @@ const AuthProvider = ({children}) => {
         setAuth({})
     }
 
+    const updateProfile = async dataProfile => {
+        const token = localStorage.getItem('token')
+
+        if(!token) {
+            setCargando(false)
+            return
+        }
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`
+            }
+        }
+
+        try {
+            const {data} = await axios.put(`https://back-trendy-app.up.railway.app/users/profile/${dataProfile.id}`, dataProfile, config)
+
+            // console.log(dataProfile)
+
+            return{
+                msg: 'Changes saved with success'
+            }
+        
+        } catch (error) {
+            return{
+                msg: error.response.data.msg,
+                error: true        
+            }
+        }     
+    }
+
+    const updatePassword = async(dataProfile) => {
+        const token = localStorage.getItem('token')
+
+        if(!token) {
+            setCargando(false)
+            return
+        }
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`
+            }
+        }
+
+        try {
+            const {data} = await axios.put(`https://back-trendy-app.up.railway.app/users/update-password`, dataProfile, config)
+            return{
+                msg: data.msg
+            }
+        } catch (error) {
+            console.log(error)
+    } 
+}
+ 
 
     return(
         <AuthContext.Provider
@@ -69,7 +126,9 @@ const AuthProvider = ({children}) => {
                 auth,
                 setAuth, 
                 cargando,
-                closeSession
+                closeSession,
+                updateProfile,
+                updatePassword
             }}
         >
 
@@ -80,7 +139,7 @@ const AuthProvider = ({children}) => {
 }
 
 export {
-    AuthProvider
+    AuthProvider,
 }
 
 export default AuthContext;

@@ -23,6 +23,8 @@ import Clients from "./views/dashboard/pages/clients";
 import Sales from "./views/dashboard/pages/sales";
 import Coments from "./views/dashboard/pages/coments";
 import UpdateProduct from "./views/dashboard/pages/updateProduct";
+import EditProfile from "./components/profile/editProfile";
+import ChangePassword from "./components/profile/changuePassword";
 
 function App() {
   const dispatch = useDispatch();
@@ -62,6 +64,8 @@ function App() {
             <Route />
             <Route path="/logged_in" element={<ProtectedRoutes />}>
               <Route index element={<ContextUser />} />
+              <Route path='/logged_in/changue-password' element={< ChangePassword/>} />
+              <Route path='/logged_in/edit-profile' element={<EditProfile />} />
             </Route>
           </Route>
           <Route path="/dashboard" element={<Sidebar />}>

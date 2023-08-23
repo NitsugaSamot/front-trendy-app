@@ -10,6 +10,7 @@ import useAuth from "../../contextClient/hooks/useAuth";
 import imageCart from "../../assets/cart.png";
 import imageCart2 from "../../assets/cart2.png";
 import imageLogo from "../../assets/trendy-spot-logo.png";
+import imageUser from '../../assets/user.png'
 import "./nav.css";
 import {
   getAllClothes,
@@ -256,11 +257,17 @@ const Nav = () => {
       </div>
 
       {auth.token ? (
+        <>
+          <NavLink to="/logged_in/edit-profile">
+            <img src={imageUser} alt="logo-home" width={"45px"}/>
+          </NavLink>
 
-        <button className="btnSearch" onClick={closeSession}>
-          Log Out
-        </button>
-
+          <NavLink to="/">
+            <button className="btnSearch" onClick={closeSession}>
+              Log Out
+            </button>
+          </NavLink>
+        </>
       ) : (
         <NavLink to="/login">
           <button className="btnSearch">Sing Up</button>
