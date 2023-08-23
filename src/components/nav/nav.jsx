@@ -248,11 +248,11 @@ const Nav = () => {
       </div>
 
       {auth.token ? (
-        <NavLink to="/">
+
           <button className="btnSearch" onClick={closeSession}>
             Log Out
           </button>
-        </NavLink>
+
       ) : (
         <NavLink to="/login">
           <button className="btnSearch">Sing Up</button>
