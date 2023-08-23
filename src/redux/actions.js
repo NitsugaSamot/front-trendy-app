@@ -2,17 +2,15 @@ import axios from "axios";
 // import axiosClient from "../contextClient/config/axiosClient";
 import {
   ORDER_BY_NAME,
-  FILTER_BY_BRAND,
-  FILTER_BY_PRICE,
   GET_ALL,
   SEARCH_NAME,
   REFRESH,
-  // FILTER_BRAND_AND_PRICE,
   ADD_TO_CART,
   INITIALIZE_CART,
   REMOVE_FROM_CART,
   INCREASE_QUANTITY,
   DECREASE_QUANTITY,
+  FILTER_PRODUCTS
 } from "./action-types";
 
 export const getAllClothes = () => {
@@ -65,54 +63,22 @@ export const refresh = () => {
   };
 };
 
-export const filterByBrand = (brandName) => {
+export const filterProducts = (brand, minPrice, maxPrice) => {
   return async function (dispatch) {
     try {
-      const response = await axios.get(
-        `https://back-trendy-app.up.railway.app/products/brands/${brandName}`
+      const filtered = await axios.get(
+        `https://back-trendy-app.up.railway.app/products/filter?brand=${brand}&minPrice=${minPrice}&maxPrice=${maxPrice}`
       );
       return dispatch({
-        type: FILTER_BY_BRAND,
-        payload: response.data,
+        type: FILTER_PRODUCTS,
+        payload: filtered.data,
       });
     } catch (error) {
-      console.error(error);
+      console.log(error);
+      alert(error.response.data.error);
     }
   };
 };
-
-export const filterPrice = ({ minPrice, maxPrice }) => {
-  return async function (dispatch) {
-    try {
-      const response = await axios.get(
-        `https://back-trendy-app.up.railway.app/products/filter?minPrice=${minPrice}&maxPrice=${maxPrice}`
-      );
-      return dispatch({
-        type: FILTER_BY_PRICE,
-        payload: response.data,
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-};
-
-//.................para implementar todos los filtros de una.........................
-// export const filterPriceAndBrand = (payload) => {
-//   return async function (dispatch) {
-//     try {
-//       const filteredByBrandAndPrice = await axios.get(`
-//       http://localhost:3004/products/filter?brandName=${payload.brand}&name=${payload.minPrice}&name=${payload.maxPrice}`);
-//       return dispatch({
-//         type: FILTER_BRAND_AND_PRICE,
-//         payload: filteredByBrandAndPrice.data,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//       alert(error.response.data.error);
-//     }
-//   };
-// };
 
 //....................carrito....................................
 
