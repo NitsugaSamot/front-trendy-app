@@ -1,22 +1,23 @@
 import { NavLink } from "react-router-dom";
+import  Card  from "react-bootstrap/Card";
+import Image from "react-bootstrap/Image"
 import './card.css'
 
-const Card = ({ image, id, name, price, productbrand }) => {
+const Cards = ({ image, id, name, price, productbrand }) => {
 
   return (
-    <div className="card">
+    <Card style={{width:"15rem", height: '25rem'}}>
       <NavLink to={`/detail/${id}`}>
-        <hr />
-        <img className="imgProduct" src={image[0]} alt={name} width={"300px"} />
-        <hr/>
-        <h4 className="h5">{name}</h4>
-        <h3 className="h5">{productbrand}</h3>
-        <hr />
         <h2 className="price">$ {price}</h2>
         <hr />
+        <Image src={image[0]} alt={name} rounded style={{width: '13rem', marginTop: '1rem'}}/>
+        <Card.Body>
+        <Card.Title>{name}</Card.Title>
+        <Card.Subtitle style={{color: 'black'}}>{productbrand}</Card.Subtitle>
+        </Card.Body>
       </NavLink>
-    </div>
+    </Card>
   );
 };
 
-export default Card;
+export default Cards;
