@@ -34,5 +34,22 @@
 @keyframes vibrateTemp{
     0%{transform: rotate(5deg)}
     50%{transform: rotate(0deg)}
-    100%{transform: rotate(5deg)}
+    100%{transform: rotate(5deg)}
 }
+
+.rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .estrellas {
+    font-size: 1.5rem;
+    color: gray;
+    cursor: pointer;
+  }
+  
+  .estrellas.active {
+    color: gold;
+  }

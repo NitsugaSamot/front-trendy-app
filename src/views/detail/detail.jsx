@@ -1,20 +1,17 @@
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 import { addToCart } from "../../redux/actions";
-// import axiosClient from "../../contextClient/config/axiosClient";
-import axios from "axios";
-
-//-----------------COSAS NUEVAS PARA EL CARRITO MI RAY
-import classnames from "classnames";
-
-//-----------------------------------------------
 
 import Nav from "../../components/nav/nav";
+import classnames from "classnames";
+import useAuth from "../../contextClient/hooks/useAuth";
 
 import "./detail.css";
-import { useDispatch, useSelector } from "react-redux";
-import useAuth from "../../contextClient/hooks/useAuth";
+
+
 const Detail = () => {
   const { id } = useParams();
   const [garment, setGarment] = useState({});
@@ -24,18 +21,68 @@ const Detail = () => {
   const [size, setSize] = useState("");
   const [stockComb, setStockComb] = useState(0);
   const dispatch = useDispatch();
-  // Estado para controlar la visualización del modal
   const [showModal, setShowModal] = useState(false);
 
-  //---------------OJOOO NUEVO PARA EL CARRO--------------------------
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedButton, setSelectedButton] = useState("");
   const [selectedColorName, setSelectedColorName] = useState(""); // Estado para almacenar el nombre del color seleccionado
 
-  const cart = useSelector((state) => state.cart);
-  console.log(cart);
+  //-------------------------- VALORACIÓN
+  const [rating, setRating] = useState(0); // Inicializa con 0 estrellas
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+  const [promedio, setPromedio] = useState(0) //
+  const [usuario, setUsuario] = useState(null)
+
+
+
+  const calcularPromedio = (ratings) => {
+    const sum = ratings.reduce((total, rating) => total + rating, 0);
+    return sum / ratings.length || 0;
+  }
+
+  const handleRating = (selectedRating) => {
+    console.log("Seleccionaste " + selectedRating + " estrellas.");
+    setRating(selectedRating);
+  }
+
+  const handleSubmitRating = async () => {
+    try {
+      if (usuario && usuario.purchaseOrder) {
+        const productInPurchaseOrder = usuario.purchaseOrder.find(
+          (order) => order.id === parseInt(id)
+        );
+
+        if (productInPurchaseOrder) {
+          // console.log(usuario.id);
+          // console.log(id);
+          // const setearPurchase = await axios.put("http://localhost:3004/users/setPurchase",{
+          //   id: usuario.id,
+          //   idProduct: id,
+          // })
+
+          const response = await axios.post(
+            "https://back-trendy-app.up.railway.app/users/rating",
+            { id: id, newRating: rating } // Envío el id y la valoración del producto 
+          );
+          setRating(0); // Reinicia el estado de la valoración
+          setShowSuccessAlert(true); // Me muestra un alert de que se envio la valoración
+          console.log(response.data); // Muestro lo  que me devuelve el back
+        } else {
+          alert("El usuario no ha comprado este producto o ya hizo una valoración.");
+        }
+      } else {
+        alert("No se pudo verificar la información del usuario.");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const cart = useSelector((state) => state.cart); // Estado local y del localStorage del Carrito
   const { auth } = useAuth();
+
+
   const selectedSizeClass = (size) =>
     classnames("buttonSize", {
       seleccionado: selectedSize === size,
@@ -46,93 +93,19 @@ const Detail = () => {
       seleccionado: selectedColor === color,
     });
   //-----------------------------------------------------------------
-//*********************************************************** */
-   //-------------------------- VALORACIÓN
-   const [rating, setRating] = useState(0); // Inicializa con 0 estrellas
-   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
-   const [ promedio, setPromedio ] = useState(0) //
-   const [usuario, setUsuario ] = useState(null)
- 
- 
- 
-   const calcularPromedio = (ratings) => {
-     const sum = ratings.reduce((total, rating) => total + rating, 0);
-     return sum / ratings.length || 0;
-   }
- 
-   const handleRating = (selectedRating) => {
-     setRating(selectedRating);
-   };
-   const handleSubmitRating = async () => {
-    try {
-      if (usuario && usuario.purchaseOrder) {
-        const productInPurchaseOrder = usuario.purchaseOrder.find(
-          (order) => order.id === parseInt(id)
-        );
-      
-        if ( productInPurchaseOrder.purchaseOrder.rating === false && productInPurchaseOrder) {
-          console.log(usuario.id);
-          console.log(id);
-          const setearPurchase = await axios.put("https://back-trendy-app.up.railway.app/users/setPurchase",{
-            id: usuario.id,
-            idProduct: id,
-          })
-          const response = await axios.put(
-            "https://back-trendy-app.up.railway.app/users/ratingTrue",
-            { userId: auth.id, idProduct: id } // Envío el id y la valoración del producto 
-          );
-          console.log(userId, idProduct)
-          setRating(0); // Reinicia el estado de la valoración
-          setShowSuccessAlert(true); // Me muestra un alert de que se envio la valoración
-          console.log(response.data); // Muestro lo  que me devuelve el back
-        } else {
-          console.log("El usuario no ha comprado este producto o ya hizo una valoración.");
-        }
-      } else {
-        console.log("No se pudo verificar la información del usuario.");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-    // VALORACIÓNNNN-------------------------------------------------------------------
 
-
-    useEffect(() => {
-      const valoracion = async () => {
-          try {
-              if (auth.id) {
-                  const response = await axios.get(`https://back-trendy-app.up.railway.app/users/${auth.id}`);
-                  setUsuario(response.data);
-                  console.log(response.data.purchaseOrder[0].rating);
-  
-                  
-              }
-          } catch (error) {
-              console.log(error);
-          }
-      };
-  
-      valoracion();
-  }, [auth.id]);
-  //------------------------------------------------------------------------------
-  
-
-
-
-//**************************************************************** */
-useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `https://back-trendy-app.up.railway.app/products/${id}`
+        const response = await axios.get(`https://back-trendy-app.up.railway.app/products/${id}`
         );
+        console.log(response.data.ratings);
         const { data } = response;
         setGarment(data);
-                //Recivo lo que hay en ratings
-                const ratings = data.ratings || []; // Asegúrate de manejar el caso cuando ratings es null
-                const promedio = calcularPromedio(ratings);
-                setPromedio(promedio)
+        
+        const ratings = data.ratings || []; 
+        const promedio = calcularPromedio(ratings);
+        setPromedio(promedio)
       } catch (error) {
         window.alert("Error al obtener los datos del personaje");
       }
@@ -140,12 +113,33 @@ useEffect(() => {
     fetchData();
   }, [id]);
 
+
+  useEffect(() => {
+    const valoracion = async () => {
+      try {
+        if (auth.id) {
+          const response = await axios.get(`https://back-trendy-app.up.railway.app/users/${auth.id}`);
+          setUsuario(response.data);
+          console.log(response.data.purchaseOrder[0].rating || []);
+
+
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    valoracion();
+  }, [auth.id]);
+
+
+
   // Cambiar la imagen principal cuando se haga clic en un botón de imagen
   const carousel = (event) => {
     setImagePP(garment.image[event.target.value]);
   };
 
-  useEffect(() => {}, [imagePP]);
+  useEffect(() => { }, [imagePP]);
 
   const toogleExpand = () => {
     setExpanded(!expanded);
@@ -155,11 +149,10 @@ useEffect(() => {
   const handleAddToCart = () => {
     if (!size || !selectedColorName) {
       alert("Please select color and size");
-      return; // Salir de la función si no se seleccionaron tamaño o color
+      return; 
     }
 
     // Verificar si el producto ya está en el carrito
-    console.log(cart);
     const itemAlreadyInCart = cart.find(
       (item) =>
         item.id === garment.id &&
@@ -167,7 +160,6 @@ useEffect(() => {
         item.color === selectedColorName
     );
 
-    console.log(itemAlreadyInCart);
     if (itemAlreadyInCart) {
       alert("This product is already in the cart");
       return; // Salir de la función si el producto ya está en el carrito
@@ -190,11 +182,8 @@ useEffect(() => {
 
   // Manejador para cambiar el tamaño seleccionado
   const handleClickStock = (event, stock = garment.stock) => {
-    //----------NEUVO CARRITO
     setColorsAvailable([]);
     setSelectedButton(event.target.value);
-    //------------
-
     const newSize = event.target.value;
     setSelectedSize(newSize);
     setColorsAvailable([]);
@@ -212,7 +201,6 @@ useEffect(() => {
     const color = event.target.name;
 
     if (color) {
-      // ----------NUEVO PARA EL CARRITO
       setSelectedColor(color);
       setSelectedButton(color);
       setStockComb(stock[size][color]);
@@ -220,9 +208,12 @@ useEffect(() => {
     }
   };
 
+
+
   return (
     <div className="">
       <Nav />
+
       <div className="theRealMaxContainer">
         <div className="carousel-inner maxContainer">
           <div className="mediumContainer">
@@ -247,6 +238,7 @@ useEffect(() => {
                       onClick={carousel}
                     />
                   ))}
+
               </div>
 
               <div className="divImage">
@@ -257,75 +249,12 @@ useEffect(() => {
                     alt={garment.name}
                   />
                 )}
+                <hr />
                 {garment.price && (
                   <div className="priceh4">
                     <hr />
                     <h4 className="therealh4">${garment.price}</h4>
                     <hr />
-
-                    {/* <div>{stockComb}</div> */}
-                    <h5>Check our stock!</h5>
-                    <div className="divButtons">
-                      <button
-                        className={
-                          selectedSize === "s"
-                            ? "buttonSize seleccionado"
-                            : "buttonSize"
-                        }
-                        onClick={handleClickStock}
-                        value="s"
-                      >
-                        S
-                      </button>
-                      <button
-                        className={
-                          selectedSize === "m"
-                            ? "buttonSize seleccionado"
-                            : "buttonSize"
-                        }
-                        onClick={handleClickStock}
-                        value="m"
-                      >
-                        M
-                      </button>
-                      <button
-                        className={
-                          selectedSize === "l"
-                            ? "buttonSize seleccionado"
-                            : "buttonSize"
-                        }
-                        onClick={handleClickStock}
-                        value="l"
-                      >
-                        L
-                      </button>
-                      <button
-                        className={
-                          selectedSize === "xl"
-                            ? "buttonSize seleccionado"
-                            : "buttonSize"
-                        }
-                        onClick={handleClickStock}
-                        value="xl"
-                      >
-                        XL
-                      </button>
-                    </div>
-                    <hr />
-                    <div className="divButtons">
-                      {colorsAvailable.map((color) => (
-                        <button
-                          className={selectedColorClass(color)}
-                          onClick={handleClickColor}
-                          name={color}
-                          key={color}
-                        >
-                          {color}
-                        </button>
-                      ))}
-                    </div>
-                    <hr />
-                    <div className="stock">Stock: {stockComb}</div>
                   </div>
                 )}
               </div>
@@ -336,13 +265,15 @@ useEffect(() => {
                 <hr />
                 {garment.name && <h3>{garment.name}</h3>}
                 <hr />
-                {garment.productbrand && <h5>{garment.productbrand}</h5>}
+                {garment.productbrand && <h4>{garment.productbrand}</h4>}
+                <hr />
+                <h4>Average ratings: {promedio.toFixed(2)}</h4>
                 <hr />
                 {garment.description && (
                   <h5>
                     {expanded
                       ? garment.description
-                      : garment.description.slice(0, 99) + "..."}
+                      : garment.description.slice(0, 300) + "..."}
                   </h5>
                 )}
                 <span
@@ -353,12 +284,74 @@ useEffect(() => {
                   }}
                   onClick={toogleExpand}
                 >
-                  {expanded ? "Ver menos" : "Ver mas"}
+                  {expanded ? "Show less..." : "Show more..."}
                 </span>
-
-                {/* Botón para agregar la prenda al carrito */}
                 <hr />
-                <button onClick={handleAddToCart}>Añadir al carrito</button>
+                <div>
+                  <h5>Check our Stock!</h5>
+                  <div className="divButtons">
+                    <button
+                      className={
+                        selectedSize === "s"
+                          ? "buttonSize seleccionado"
+                          : "buttonSize"
+                      }
+                      onClick={handleClickStock}
+                      value="s"
+                    >
+                      S
+                    </button>
+                    <button
+                      className={
+                        selectedSize === "m"
+                          ? "buttonSize seleccionado"
+                          : "buttonSize"
+                      }
+                      onClick={handleClickStock}
+                      value="m"
+                    >
+                      M
+                    </button>
+                    <button
+                      className={
+                        selectedSize === "l"
+                          ? "buttonSize seleccionado"
+                          : "buttonSize"
+                      }
+                      onClick={handleClickStock}
+                      value="l"
+                    >
+                      L
+                    </button>
+                    <button
+                      className={
+                        selectedSize === "xl"
+                          ? "buttonSize seleccionado"
+                          : "buttonSize"
+                      }
+                      onClick={handleClickStock}
+                      value="xl"
+                    >
+                      XL
+                    </button>
+                  </div>
+                  <hr />
+                  <div className="divButtons">
+                    {colorsAvailable.map((color) => (
+                      <button
+                        className={selectedColorClass(color)}
+                        onClick={handleClickColor}
+                        name={color}
+                        key={color}
+                      >
+                        {color}
+                      </button>
+                    ))}
+                  </div>
+                  <hr />
+                  <div className="stock">Stock: {stockComb}</div>
+                  <button onClick={handleAddToCart}>Add to cart</button>
+                </div>
 
                 {/* Modal para mostrar cuando se agrega un producto al carrito */}
                 <Modal show={showModal} onHide={() => setShowModal(false)}>
@@ -378,7 +371,7 @@ useEffect(() => {
                       variant="secondary"
                       onClick={() => setShowModal(false)}
                     >
-                      Cerrar
+                      Close
                     </Button>
                   </Modal.Footer>
                 </Modal>
@@ -388,36 +381,36 @@ useEffect(() => {
         </div>
       </div>
       <hr />
-      <div className="interaction-container">
-        <div>
-          <h2>RATE THE PRODUCT</h2>
-          {
-            <div className="rating">
-              {[1, 2, 3, 4, 5].map((estrellas) => (
-                <span key={estrellas}
-                  className={`estrellas ${rating >= estrellas ? "active" : ""}`}
-                  onClick={() => handleRating(estrellas)}
-                >
-                  ★
-                </span>
-              ))}
-            </div>
-          }
-          <button onClick={handleSubmitRating}>Enviar Valoración</button>
-          {showSuccessAlert && (
-            <div className="alert alert-success d-flex align-items-center" role="alert">
-              <svg className="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
-                <use xlinkHref="#check-circle-fill" />
-              </svg>
-              <div>
-                Valoración enviada con éxito.
-              </div>
-            </div>
-          )}
 
-        </div>
+      <div>
+        <h2>★ RATE THE PRODUCT ★</h2>
+        {
+          <div className="rating">
+            {[1, 2, 3, 4, 5].map((estrellas) => (
+              <span key={estrellas}
+                className={`estrellas ${rating >= estrellas ? "active" : ""}`}
+                onClick={() => handleRating(estrellas)}
+              >
+                ★
+              </span>
+            ))}
+          </div>
+        }
+        <button onClick={handleSubmitRating}>Send Feedback</button>
+        {showSuccessAlert && (
+          <div className="alert alert-success d-flex align-items-center" role="alert">
+            <svg className="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+              <use xlinkHref="#check-circle-fill" />
+            </svg>
+            <div>
+              Rating sent successfully
+            </div>
+          </div>
+        )}
+
       </div>
     </div>
+
   );
 };
 
