@@ -125,7 +125,7 @@ const Nav = () => {
           <img src={imageLogo} alt="logo-home" className="logoHome" />
         </NavLink>
       )}
-      {admin.type === 1 && (
+      {admin.type == 1 && (
         <NavLink to="/dashboard">
           <button style={{width: '5rem', height: '2rem'}} className="btnSearch">Admin</button>
         </NavLink>

@@ -1,17 +1,14 @@
 import {
   GET_ALL,
   ORDER_BY_NAME,
-  FILTER_BY_BRAND,
-  FILTER_BY_PRICE,
   SEARCH_NAME,
   REFRESH,
-
-  // FILTER_BRAND_AND_PRICE,
   ADD_TO_CART,
   REMOVE_FROM_CART,
   INITIALIZE_CART,
   INCREASE_QUANTITY,
   DECREASE_QUANTITY,
+  FILTER_PRODUCTS
 } from "./action-types";
 
 const initialState = {
@@ -57,26 +54,11 @@ const reducer = (state = initialState, { type, payload }) => {
         allClothes1: sortedArr,
       };
     }
-    //OK
-    case FILTER_BY_PRICE:
-      return {
-        ...state,
-        allClothes1: payload,
-      };
-    //OK
     case SEARCH_NAME:
       return {
         ...state,
         allClothes1: payload,
       };
-
-    case FILTER_BY_BRAND:
-      return {
-        ...state,
-        allClothes1: payload,
-        filteredByPrice: [], // Restablecer el filtrado por precio cuando cambia la marca
-      };
-    //OK
     case REFRESH: {
       const perrito = state.allClothes2;
       return {
@@ -84,17 +66,14 @@ const reducer = (state = initialState, { type, payload }) => {
         allClothes1: perrito,
       };
     }
-    //.......para hacer todos los filtros juntos..........
-
-    // case FILTER_BRAND_AND_PRICE: {
-    //   return {
-    //     ...state,
-    //     allClothes1: payload,
-    //   };
-    // }
+    case FILTER_PRODUCTS: {
+      return {
+        ...state,
+        allClothes1: payload,
+      };
+    }
 
     //..............carrito OK.......................
-
     case ADD_TO_CART: {
       return {
         ...state,
