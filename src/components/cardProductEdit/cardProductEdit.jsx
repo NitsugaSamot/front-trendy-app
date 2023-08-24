@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import validation from "./validation";
+import "./cardProductEdit.css"
 import validationStock from "./validationStock";
 const CardProductEdit = ({ showProduct, onSuccessfulUpdate }) => {
   const [productEdit, setProductEdit] = useState({

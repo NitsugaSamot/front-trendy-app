@@ -1,0 +1,22 @@
+.stocks {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin: 2px;
+    flex-direction: column;
+}
+.stocks label {
+    display: flex;
+    font-weight: bold;
+    align-items: center;
+    color: white;
+}
+
+.stocks h5 {
+    color: white;
+}
+
+.stocks input {
+    margin-left: 2px;
+
+}
