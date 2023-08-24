@@ -35,7 +35,11 @@ const Login = () => {
         );
         setAlert({});
         if(data.isDeleted){
-          return alert('User has been deleted')
+          setAlert({
+            msg: "User has been deleted",
+            error: true,
+          });
+          return
         }
       localStorage.setItem("token", data.token);
       setAuth(data);
