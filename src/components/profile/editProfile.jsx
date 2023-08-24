@@ -93,7 +93,7 @@ const EditProfile = () => {
         </form>
 
         <div className="purchases">
-          <span>Thank you for your buy's</span>
+          <span style={{fontWeight: 'bold', backgroundColor: 'rgb(17, 76, 95);', width: '100%'}}>Thank you for your buy's</span>
           <Purchases/>
         </div>
       </div>
