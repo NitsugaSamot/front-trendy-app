@@ -71,6 +71,7 @@ const Detail = () => {
           setShowSuccessAlert(true); // Me muestra un alert de que se envio la valoración
           console.log(response.data); // Muestro lo  que me devuelve el back
           setBotonSubmit(true);
+          alert("Rating sent successfully, thank you for your buy!")
         } else {
           alert(
             "The user has not purchased this product or has already given a review."
@@ -216,23 +217,6 @@ const Detail = () => {
       <Nav />
 
       <div className="theRealMaxContainer">
-      {showSuccessAlert && (
-          <div
-            className="alert alert-success d-flex align-items-center"
-            role="alert"
-          >
-            <svg
-              className="bi flex-shrink-0 me-2"
-              width="24"
-              height="24"
-              role="img"
-              aria-label="Success:"
-            >
-              <use xlinkHref="#check-circle-fill" />
-            </svg>
-            <div>Rating sent successfully</div>
-          </div>
-        )}
         <div className="carousel-inner maxContainer">
           <div className="mediumContainer">
             <div className="imageCont">
@@ -419,6 +403,23 @@ const Detail = () => {
         <button onClick={handleSubmitRating} disabled={botonSubmit}>
           Send Feedback
         </button>
+        {showSuccessAlert && (
+          <div
+            className="alert alert-success d-flex align-items-center"
+            role="alert"
+          >
+            <svg
+              className="bi flex-shrink-0 me-2"
+              width="24"
+              height="24"
+              role="img"
+              aria-label="Success:"
+            >
+              <use xlinkHref="#check-circle-fill" />
+            </svg>
+            <div>Rating sent successfully</div>
+          </div>
+        )}
       </div>
     </div>
   );
