@@ -2,13 +2,13 @@
 
 .footer {
     width: 100%;
-    background-color: #e1ecd6;
-    justify-content: center;
+    background-color: #e1ecd6
   }
   
   .top-bar {
     width: 100%;
-    padding: 20px;
+    height: 80px;
+    padding: 0 20px;
     position: relative;
   }
   
@@ -77,6 +77,10 @@
   .copy-right {
     font-size: 150%;
   }
+  
+.menu ul li a:hover {
+    color: #b9ce1f;
+}  
 
 .about-us h3:hover,
 .contact-us h3:hover{
