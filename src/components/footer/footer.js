@@ -8,13 +8,13 @@ const Footer = () => {
     <div className="footer">
       <div className="top-bar">
         <img id="logo" src={image} alt="Logo de la empresa" />
-        <nav>
+        <footer className="menu">
           <ul>
             <li>Home</li>
             <li>Us</li>
             <li>Contact</li>
           </ul>
-        </nav>
+        </footer>
       </div>
       <div className="main-section">
         <div className="about-us">
