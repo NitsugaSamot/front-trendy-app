@@ -8,9 +8,6 @@ const Footer = () => {
     <div className="footer">
       <div className="top-bar">
         <img id="logo" src={image} alt="Logo de la empresa" />
-        <div className="menu">
-            Home!
-        </div>
       </div>
       <div className="main-section">
         <div className="about-us">
