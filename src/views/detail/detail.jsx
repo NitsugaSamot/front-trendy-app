@@ -269,7 +269,7 @@ const Detail = () => {
                 <hr />
                 <h4>Average ratings: {promedio.toFixed(2)}</h4>
                 <hr />
-                <div style={{width: '20rem'}}>
+                <div style={{width: '30rem'}}>
                 {garment.description && (
                   <h5>
                     {expanded
