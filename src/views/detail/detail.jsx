@@ -413,7 +413,7 @@ const Detail = () => {
       </div>
       <hr />
 
-      <div>
+      <div style={{margin: '5px'}}>
         <h2>★ RATE THE PRODUCT ★</h2>
         {
           <div className="rating">
