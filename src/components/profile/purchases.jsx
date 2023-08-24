@@ -37,10 +37,7 @@ const Purchases = () => {
             <div className="titlePurchase">
                   <h5>{purchase.title}</h5>
             </div>
-            
             <p>Precio: {purchase.unit_price}</p>
-            <p>Cantidad: {purchase.quantity}</p>
-            <p>Descripción: {purchase.description}</p>
             {/* Agrega aquí más detalles de la compra si lo deseas */}
           </div>
         ))}
