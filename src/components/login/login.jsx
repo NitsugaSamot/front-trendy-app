@@ -56,7 +56,7 @@ const Login = () => {
       <div className="mainRegister">
         <h3 className="titleLogin">Inicia sesión y has tus compras</h3>
 
-        {msg && <Alert alerta={alert} />}
+        {msg && <Alert alert={alert} />}
 
         <form className="formLogin" onSubmit={handleSubmit}>
           <div className="columnaLogin">
