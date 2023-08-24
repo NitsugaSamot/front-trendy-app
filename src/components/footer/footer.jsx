@@ -8,6 +8,13 @@ const Footer = () => {
     <div className="footer">
       <div className="top-bar">
         <img id="logo" src={image} alt="Logo de la empresa" />
+        <nav className="menu">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Us</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
       </div>
       <div className="main-section">
         <div className="about-us">

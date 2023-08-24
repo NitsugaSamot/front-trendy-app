@@ -5,7 +5,7 @@ import Filter from "../../components/filter/filter";
 import Paginate from "../../components/paginate/paginate";
 import banner from "../../assets/Home.png";
 import "./home.css";
-// import Footer from "../../components/footer/footer";
+import Footer from "../../components/footer/footer";
 
 const Home = () => {
   const allClothes1 = useSelector((state) => state.allClothes1);
@@ -47,7 +47,7 @@ const Home = () => {
           handlePageChange={handlePageChange}
         />
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };
