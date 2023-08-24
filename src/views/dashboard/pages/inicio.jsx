@@ -5,7 +5,7 @@ const Inicio = () => {
     return (
       <div>
         <Image src={logo} fluid/>
-        <h1>SOY EL INICIO BUENASSS</h1>
+        <h1 style={{color: 'white'}}>Welcome</h1>
       </div>
     )
   }
