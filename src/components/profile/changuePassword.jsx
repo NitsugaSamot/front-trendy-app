@@ -8,7 +8,7 @@ import "./profileStyles.css";
 const ChangePassword = () => {
   const { updatePassword } = useAuth();
 
-  const [alerta, setAlerta] = useState({});
+  const [alert, setAlert] = useState({});
   const [password, setPassword] = useState({
     pwd_curr: "",
     pwd_new: "",
@@ -18,7 +18,7 @@ const ChangePassword = () => {
     e.preventDefault();
 
     if (Object.values(password).some((campo) => campo === "")) {
-      setAlerta({
+      setAlert({
         msg: "Todos los campos son obligatorios",
         error: true,
       });
@@ -26,7 +26,7 @@ const ChangePassword = () => {
     }
 
     if (password.pwd_new.length < 6) {
-      setAlerta({
+      setAlert({
         msg: "El Password debe tener al menos 6 caracteres",
         error: true,
       });
@@ -35,7 +35,7 @@ const ChangePassword = () => {
 
     const response = await updatePassword(password);
 
-    setAlerta(response);
+    setAlert(response);
   };
 
   const { msg } = alert;
@@ -44,7 +44,7 @@ const ChangePassword = () => {
     <>
       <ProfileNav />
 
-      {msg && <Alert alerta={alerta} />}
+      {msg && <Alert alert={alert} />}
       <form className="profileForm" onSubmit={handleSubmit} action="">
         <div className="column">
           <label className="label" htmlFor="">
