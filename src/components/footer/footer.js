@@ -10,9 +10,9 @@ const Footer = () => {
         <img id="logo" src={image} alt="Logo de la empresa" />
         <nav className="menu">
           <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Us</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a>Home</a></li>
+            <li><a>Us</a></li>
+            <li><a>Contact</a></li>
           </ul>
         </nav>
       </div>
