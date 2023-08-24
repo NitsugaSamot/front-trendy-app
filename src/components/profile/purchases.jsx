@@ -22,7 +22,7 @@ const Purchases = () => {
 
   return (
     <>
-    <div className="divPurchases">  
+    <div>  
     <span style={{fontWeight: 'bold', width: '100%', color: 'white', margin: '5px'}}>Thank you for your buy's</span>
     <div>
     <div className="purchases">

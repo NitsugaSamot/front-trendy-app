@@ -92,7 +92,7 @@ const EditProfile = () => {
 
         </form>
 
-        <div className="purchases">
+        <div className="divPurchases">
           <Purchases/>
         </div>
       </div>
