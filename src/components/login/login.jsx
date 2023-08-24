@@ -20,7 +20,7 @@ const Login = () => {
 
     if ([email, password].includes("")) {
       setAlert({
-        msg: "Todos los campos son obligatorios",
+        msg: "All fields are required",
         error: true,
       });
       return;
@@ -48,6 +48,10 @@ const Login = () => {
       navigate("/logged_in");
 
   };
+
+setTimeout(() => {
+    setAlert({})
+}, 30000);
 
   const { msg } = alert;
 
