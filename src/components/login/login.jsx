@@ -54,7 +54,7 @@ const Login = () => {
   return (
     <>
       <div className="mainRegister">
-        <h3 className="titleLogin">Inicia Sesión Y haz tus compras</h3>
+        <h3 className="titleLogin">Inicia sesión y haz tus compras</h3>
 
         {msg && <Alert alerta={alert} />}
 
@@ -102,10 +102,10 @@ const Login = () => {
 
         <nav className="navRegister">
           <NavLink className="linksRegister" to="register">
-            ¿No tienes una cuenta? Registrate
+            ¿No tienes una cuenta? Regístrate
           </NavLink>
           <NavLink className="linksRegister" to="/reset-password">
-            Olvide mi Password
+            Olvide mi password
           </NavLink>
         </nav>
       </div>
