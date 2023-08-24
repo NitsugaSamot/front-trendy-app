@@ -38,8 +38,8 @@ const Login = () => {
         console.log(data, 'que trae data')
         setAlert({});
         if(data.isDeleted){
-          alert('siamo fori')
-          return
+          
+          alert('pasamos por aca')
         }
       localStorage.setItem("token", data.token);
       setAuth(data);
