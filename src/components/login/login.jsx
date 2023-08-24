@@ -37,10 +37,10 @@ const Login = () => {
         );
         console.log(data, 'que trae data')
         setAlert({});
-        if(data.isDeleted){
+        /* if(data.isDeleted){
           
           return alert('siamo fori')
-        }
+        } */
       localStorage.setItem("token", data.token);
       setAuth(data);
 
