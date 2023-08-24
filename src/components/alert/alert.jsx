@@ -1,11 +1,11 @@
 import "./alert.css";
 
-const Alert = ({ alerta }) => {
+const Alert = ({ alert }) => {
   return (
     <div
-      className={`${alerta.error ? "alertRed" : "alertOk"} bg-gradient-to-br`}
+      className={`${alert.error ? "alertRed" : "alertOk"} bg-gradient-to-br`}
     >
-      {alerta.msg}
+      {alert.msg}
     </div>
   );
 };
