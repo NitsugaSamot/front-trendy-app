@@ -35,7 +35,7 @@ const Login = () => {
         );
         setAlert({});
         if(data.isDeleted){
-          throw new Error('Este es un error simulado');
+          return alert('User has been deleted')
         }
       localStorage.setItem("token", data.token);
       setAuth(data);
