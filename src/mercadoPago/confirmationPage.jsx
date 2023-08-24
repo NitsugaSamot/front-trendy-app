@@ -1,9 +1,9 @@
-const REACT_APP_VERCEL_FRONTEND_URL = import.meta.env.REACT_APP_VERCEL_FRONTEND_URL;
+// const REACT_APP_VERCEL_FRONTEND_URL = import.meta.env.REACT_APP_VERCEL_FRONTEND_URL;
 
 const ConfirmationPage = () => {
   // Manejador para el botón "Volver a Trendyspot"
   const handleBack = () => {
-    window.location.href = REACT_APP_VERCEL_FRONTEND_URL;
+    window.location.href = "https://front-trendy-app.vercel.app/";
   };
 
   return (
