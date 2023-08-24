@@ -13,7 +13,7 @@ const ProfileNav = () => {
 
           
             <NavLink className='navLink' to="/logged_in/changue-password">
-                <p className='p-nav'>Changue Password</p>
+                <p className='p-nav'>Change Password</p>
             </NavLink>
             
            
