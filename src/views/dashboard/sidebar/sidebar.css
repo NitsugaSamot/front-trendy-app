@@ -25,7 +25,6 @@
     border-right: 1px solid black;
     padding: 1rem;
     height: calc(100vh - 52px);
-    position: fixed;
   }
   
   .content {
