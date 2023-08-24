@@ -2,6 +2,7 @@ import { useState } from "react";
 import ProfileNav from "./profileNav";
 import Alert from "../alert/alert";
 import useAuth from "../../contextClient/hooks/useAuth";
+import Purchases from "./purchases";
 import "./profileStyles.css";
 
 const ChangePassword = () => {
