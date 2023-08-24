@@ -25,8 +25,6 @@ const Login = () => {
       });
       return;
     }
-
-    try {
       //Informacion requerida: email y password
       const { data } = await axios.post(
         "https://back-trendy-app.up.railway.app/users/login",
@@ -35,7 +33,6 @@ const Login = () => {
           password,
         }
         );
-        console.log(data, 'que trae data')
         setAlert({});
         if(data.isDeleted){
           throw new Error('Este es un error simulado');
@@ -45,13 +42,7 @@ const Login = () => {
 
       // navigate('/')
       navigate("/logged_in");
-    } catch (error) {
-      console.log(error.response.data.msg);
-      setAlert({
-        msg: error.response.data.msg,
-        error: true,
-      });
-    }
+
   };
 
   const { msg } = alert;
