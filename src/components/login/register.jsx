@@ -16,9 +16,9 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if ([name, email, password, repetirPassword].includes("")) {
+    if ([name, email, password, repetirPassword].includes('')) {
       setAlert({
-        msg: "Todos los campos son obligatorios",
+        msg: 'All fields are required',
         error: true,
       });
       return;
@@ -26,15 +26,16 @@ const Register = () => {
 
     if (password !== repetirPassword) {
       setAlert({
-        msg: "Los Passwords no coinciden",
+        msg: 'The Passwords do not match',
         error: true,
       });
       return;
     }
 
+
     if (password.length < 6) {
       setAlert({
-        msg: "El Password debe tener al menos 6 caracteres",
+        msg: 'The Password must have at least 6 characters',
         error: true,
       });
       return;
@@ -68,6 +69,10 @@ const Register = () => {
         msg: error.response.data.error,
         error: true,
       });
+
+    setTimeout(() => {
+        setAlert({})
+    }, 15000);
     }
   };
 
@@ -78,8 +83,8 @@ const Register = () => {
   };
 
   setTimeout(() => {
-    setAlert({});
-  }, 6000);
+    setAlert({})
+}, 20000);
 
   const { msg } = alert;
 
@@ -88,7 +93,7 @@ const Register = () => {
       <div className="mainRegister">
         <h3 className="titleLogin">Crea una cuenta para hacer tu compra</h3>
 
-        {msg && <Alert alerta={alert} />}
+        {msg && <Alert alert={alert} />}
 
         <form action="" className="formRegister" onSubmit={handleSubmit}>
           <div className="columna">
