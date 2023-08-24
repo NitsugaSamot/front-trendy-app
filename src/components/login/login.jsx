@@ -38,8 +38,7 @@ const Login = () => {
         console.log(data, 'que trae data')
         setAlert({});
         if(data.isDeleted){
-          alert('siamo fori')
-          return 
+          throw new Error('Este es un error simulado');
         }
       localStorage.setItem("token", data.token);
       setAuth(data);
