@@ -13,10 +13,10 @@
     display: flex;
     flex-direction: column; 
     background-color: #033F63;
-    position: fixed;
   }
   
   .content-container {
+    position: fixed;
     display: flex;
     flex-grow: 1;
     }
