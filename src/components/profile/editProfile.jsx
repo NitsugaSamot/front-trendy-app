@@ -9,7 +9,7 @@ const EditProfile = () => {
 
   const {auth, updateProfile} = useAuth()
   const [profile, setProfile] = useState({})
-  const [alerta, setAlerta] = useState({})
+  const [alert, setAlert] = useState({})
 
   useEffect(() => {
     setProfile(auth)
@@ -25,8 +25,8 @@ const EditProfile = () => {
     const {name, email} = profile
 
     if([name, email].includes('')){
-      setAlerta({
-        msg: 'Los campos no se pueden guardar vacíos',
+      setAlert({
+        msg: 'Fields cannot be saved empty',
         error: true
       })
       return
@@ -34,7 +34,7 @@ const EditProfile = () => {
 
     const result = await updateProfile(profile)
 
-    setAlerta(result)
+    setAlert(result)
 
 
 
@@ -42,7 +42,7 @@ const EditProfile = () => {
 
   }
 
-  const { msg } = alerta
+  const { msg } = alert
 
   return (
     <>
@@ -51,7 +51,7 @@ const EditProfile = () => {
 
       <ProfileNav/>
 
-        {msg && <Alert alerta={alerta} />}
+        {msg && <Alert alert={alert} />}
         <form className="profileForm" onSubmit={handleSubmit}>
           <div className="column">
                 <label className="label" htmlFor="name">Name</label>
