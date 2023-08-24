@@ -269,6 +269,7 @@ const Detail = () => {
                 <hr />
                 <h4>Average ratings: {promedio.toFixed(2)}</h4>
                 <hr />
+                <div style={{width: '20rem'}}>
                 {garment.description && (
                   <h5>
                     {expanded
@@ -276,6 +277,7 @@ const Detail = () => {
                       : garment.description.slice(0, 300) + "..."}
                   </h5>
                 )}
+                </div>
                 <span
                   style={{
                     cursor: "pointer",
