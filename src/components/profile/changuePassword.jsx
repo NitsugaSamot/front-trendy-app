@@ -1,95 +1,101 @@
-import {useState} from 'react'
-import ProfileNav from './profileNav'
-import Alert from '../alert/alert'
-import useAuth from '../../contextClient/hooks/useAuth'
-import './profileStyles.css'
+import { useState } from "react";
+import ProfileNav from "./profileNav";
+import Alert from "../alert/alert";
+import useAuth from "../../contextClient/hooks/useAuth";
+import "./profileStyles.css";
 
 const ChangePassword = () => {
+  const { updatePassword } = useAuth();
 
-  const {updatePassword} = useAuth()
-
-  const [alerta, setAlerta] = useState({})
+  const [alerta, setAlerta] = useState({});
   const [password, setPassword] = useState({
-      pwd_curr: '',
-      pwd_new: ''
-  })
+    pwd_curr: "",
+    pwd_new: "",
+  });
 
-  const handleSubmit = async e => {
-      e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-      if(Object.values(password).some(campo => campo === '' )) {
-        setAlerta({
-            msg: 'Todos los campos son obligatorios',
-            error: true             
-        })
-        return
+    if (Object.values(password).some((campo) => campo === "")) {
+      setAlerta({
+        msg: "Todos los campos son obligatorios",
+        error: true,
+      });
+      return;
     }
 
-    if(password.pwd_new.length < 6) {
+    if (password.pwd_new.length < 6) {
       setAlerta({
-          msg: 'El Password debe tener al menos 6 caracteres',
-          error: true             
-      })
-      return
-  }
+        msg: "El Password debe tener al menos 6 caracteres",
+        error: true,
+      });
+      return;
+    }
 
-  const response = await updatePassword(password)
+    const response = await updatePassword(password);
 
-  setAlerta(response)
+    setAlerta(response);
+  };
 
-  }
-
-  const {msg} = alert
-
+  const { msg } = alert;
 
   return (
     <>
-      <ProfileNav/>
+      <ProfileNav />
 
-      {msg && <Alert alerta={alerta}/>}
-      <form 
-          className='profileForm'
-          onSubmit={handleSubmit}
-          action="">
-            <div className='column'>
-                  <label className='label' htmlFor="">Current password</label>
+      {msg && <Alert alerta={alerta} />}
+      <form className="profileForm" onSubmit={handleSubmit} action="">
+        <div className="column">
+          <label className="label" htmlFor="">
+            Current password
+          </label>
 
-                  <input type="password" 
-                        className='inputProfile'
-                        name='pwd_curr'
-                        placeholder='Write your current password'
-                        onChange={e => setPassword({
-                          ...password,
-                          [e.target.name] : e.target.value
-                        })}
-                  />
-            </div>
+          <input
+            type="password"
+            className="inputProfile"
+            name="pwd_curr"
+            placeholder="Write your current password"
+            onChange={(e) =>
+              setPassword({
+                ...password,
+                [e.target.name]: e.target.value,
+              })
+            }
+          />
+        </div>
 
+        <div className="column">
+          <label className="label" htmlFor="">
+            New password
+          </label>
 
-            <div className='column'>
-                  <label className='label' htmlFor="">New password</label>
+          <input
+            type="password"
+            className="inputProfile"
+            name="pwd_new"
+            placeholder="Write your current password"
+            onChange={(e) =>
+              setPassword({
+                ...password,
+                [e.target.name]: e.target.value,
+              })
+            }
+          />
+        </div>
 
-                  <input type="password" 
-                        className='inputProfile'
-                        name='pwd_new'
-                        placeholder='Write your current password'
-                        onChange={e => setPassword({
-                          ...password,
-                          [e.target.name] : e.target.value
-                        })}
-                  />
-            </div>
-
-            <div>
-              <input className='btnEditProfile' type="submit" value='Update password' />
-            </div>
-
-
-
+        <div>
+          <input
+            className="btnEditProfile"
+            type="submit"
+            value="Update password"
+          />
+        </div>
       </form>
-
+      <div className="divPurchases">
+        <Purchases />
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default ChangePassword
+export default ChangePassword;
