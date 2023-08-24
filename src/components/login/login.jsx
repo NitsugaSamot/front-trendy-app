@@ -54,7 +54,7 @@ const Login = () => {
   return (
     <>
       <div className="mainRegister">
-        <h3 className="titleLogin">Inicia sesión y haz tus compras</h3>
+        <h3 className="titleLogin">Inicia sesión y has tus compras</h3>
 
         {msg && <Alert alerta={alert} />}
 

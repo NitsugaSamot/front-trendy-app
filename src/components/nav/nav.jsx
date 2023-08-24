@@ -275,7 +275,7 @@ const Nav = () => {
       {auth.token ? (
         <>
           <NavLink to="/logged_in/edit-profile">
-            <img src={imageUser} alt="logo-home" width={"45px"}/>
+            <img  style={{ width: "2rem" }} src={imageUser} alt="logo-home" width={"45px"}/>
           </NavLink>
 
           <NavLink to="/">
