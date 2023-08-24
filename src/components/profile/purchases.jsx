@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useAuth from "../../contextClient/hooks/useAuth";
 import axios from "axios";
 //import axiosClient from "../../contextClient/config/axiosClient";
-import './profileStyles.css'
+import "./profileStyles.css";
 
 const Purchases = () => {
   const { auth } = useAuth(); // Supongo que obtienes la información del usuario aquí
@@ -10,11 +10,14 @@ const Purchases = () => {
 
   useEffect(() => {
     if (auth) {
-      axios.get(`https://back-trendy-app.up.railway.app/users/${auth.id}/purchases`)
-        .then(response => {
+      axios
+        .get(
+          `https://back-trendy-app.up.railway.app/users/${auth.id}/purchases`
+        )
+        .then((response) => {
           setPurchases(response.data);
         })
-        .catch(error => {
+        .catch((error) => {
           console.error("Error fetching purchases:", error);
         });
     }
@@ -22,25 +25,28 @@ const Purchases = () => {
 
   return (
     <>
-    <div>  
-    <span style={{fontWeight: 'bold', width: '100%', color: 'white', margin: '10px'}}>Thank you for your buy's</span>
-    <div>
-    <div className="purchases">
-        {purchases.map(purchase => (
-          <div className="purchase" key={purchase.id}>
-            <div className="titlePurchase">
+      <div>
+        <div style={{margin: '5px'}}>
+          <span style={{ fontWeight: "bold", width: "100%", color: "white" }}>
+            Thank you for your buy's
+          </span>
+        </div>
+        <div>
+          <div className="purchases">
+            {purchases.map((purchase) => (
+              <div className="purchase" key={purchase.id}>
+                <div className="titlePurchase">
                   <h5>{purchase.title}</h5>
-            </div>
-            <p>Precio: {purchase.unit_price}</p>
-            {/* Agrega aquí más detalles de la compra si lo deseas */}
+                </div>
+                <p>Precio: {purchase.unit_price}</p>
+                {/* Agrega aquí más detalles de la compra si lo deseas */}
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
-    </div>
-
-    </div>
     </>
   );
-}
+};
 
 export default Purchases;
