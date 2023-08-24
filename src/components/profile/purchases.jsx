@@ -23,7 +23,7 @@ const Purchases = () => {
   return (
     <>
     <div className="divPurchases">  
-    <span style={{fontWeight: 'bold', width: '100%'}}>Thank you for your buy's</span>
+    <span style={{fontWeight: 'bold', width: '100%', color: 'white'}}>Thank you for your buy's</span>
     <div>
     <div className="purchases">
         {purchases.map(purchase => (

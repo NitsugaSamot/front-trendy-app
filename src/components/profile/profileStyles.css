@@ -44,7 +44,10 @@
 .divPurchases{
     background-color: rgb(17, 76, 95);
     color: rgb(176, 205, 230);
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .titlePurchase{
