@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { orderByName, filterProducts } from "../../redux/actions";
+import { orderByName, filterProducts, getAllClothes } from "../../redux/actions";
 import "./filter.css";
 
 const Filter = ({ onPageChange }) => {
