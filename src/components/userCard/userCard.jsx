@@ -1,7 +1,7 @@
 import './userCard.css'
 
 const UserCard = ({ user }) => {
-     console.log('esta es la card de usuario')
+     console.log(user)
     return (
         <div className="UserConfig">
             <h1>{user.id}</h1>
