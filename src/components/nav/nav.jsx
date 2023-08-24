@@ -286,7 +286,7 @@ const Nav = () => {
         </>
       ) : (
         <NavLink to="/login">
-          <button className="btnSearch">Sing Up</button>
+          <button className="btnSearch">Sing in</button>
         </NavLink>
       )}
     </div>

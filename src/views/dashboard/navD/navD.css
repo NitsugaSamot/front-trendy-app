@@ -1,0 +1,10 @@
+.containerNav {
+    background-color: rgba(255, 255, 255, 0.869);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 5rem;
+    position: fixed;
+    width: 100%;
+    z-index: 3;
+}
