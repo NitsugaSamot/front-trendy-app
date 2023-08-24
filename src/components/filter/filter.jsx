@@ -58,6 +58,11 @@ const Filter = ({ onPageChange }) => {
   const handleRefresh = () => {
     dispatch(getAllClothes());
     window.scrollTo(0, 450);
+    setFilterOptions({
+      brand: "",
+      minPrice: "",
+      maxPrice: "",
+    })
   };
 
   return (
