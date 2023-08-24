@@ -22,15 +22,9 @@ const Purchases = () => {
 
   return (
     <>
-        {/* <div className="titlePurchases">
-    <h3>Purchase history</h3>
-</div> */}
-
-    <div className="divPurchases">
-   
-
-      
-    <div >
+    <div className="divPurchases">  
+    <span style={{fontWeight: 'bold', width: '100%'}}>Thank you for your buy's</span>
+    <div>
     <div className="purchases">
         {purchases.map(purchase => (
           <div className="purchase" key={purchase.id}>
