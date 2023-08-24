@@ -92,25 +92,6 @@ const Nav = () => {
     }
   };
 
-  // const handleBuy = () => {
-  //   const createPreference = async () => {
-  //     try {
-  //       const response = await axios.post(
-  //         "https://back-trendy-app.up.railway.app/mercadopago/order",
-  //         orderData
-  //       );
-  //       const link = response.data.response.body.init_point;
-  //       window.location.href = link;
-  //       handleEmptyCart();
-  //     } catch (error) {
-  //       console.log(error.message);
-  //     }
-  //   };
-
-  //   // Llamar a la función para crear la preferencia al hacer clic en el botón "Buy"
-  //   createPreference();
-  // };
-
   const handleIncrement = (itemId, size, color) => {
     dispatch(increaseQuantity(itemId, size, color));
   };
@@ -183,11 +164,6 @@ const Nav = () => {
           </button>
         </form>
       )}
-
-      {/* Enlace para crear una nueva prenda */}
-      <NavLink to="/create">
-        <button className="btnSearch">create</button>
-      </NavLink>
 
       {/* Contenedor del icono del carrito */}
       <div className="cart-icon-container">
