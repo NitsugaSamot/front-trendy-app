@@ -47,7 +47,7 @@ const Filter = ({ onPageChange }) => {
     
     //Se llama al dispatch con los argumentos brand minPrice y max price, brand puede o no estar
      if (filterOptions.minPrice < filterOptions.maxPrice) {
-      dispatch(filterProducts(brand, parseInt(minPrice), parseInt(maxPrice)));
+      dispatch(filterProducts(brand, minPrice, maxPrice));
      } else {
        setErrorPrice("Min is higher than max.");
        return;
