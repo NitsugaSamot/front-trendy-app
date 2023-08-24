@@ -36,10 +36,6 @@ const ConfirmAccount = () => {
     ConfirmAccount();
   }, []);
 
-  setTimeout(() => {
-    setAlert({})
-  }, 40000);
-
   const { msg } = alert;
 
   return (
@@ -47,7 +43,7 @@ const ConfirmAccount = () => {
       <div>Confirm Account</div>
 
       <div className="mt-20 md:mt-10 shadow-lg px-5 py-10 rounded-xl bg-white">
-        {msg && <Alert alert={alert} />}
+        {msg && <Alert alerta={alert} />}
 
         {accountConfirmated && (
           <Link
