@@ -34,13 +34,13 @@ const Login = () => {
           email,
           password,
         }
-      );
-
-      setAlert({});
-      if(data.isDeleted){
-        alert('siamo fori')
-        return
-      }
+        );
+        console.log(data, 'que trae data')
+        setAlert({});
+        if(data.isDeleted){
+          alert('siamo fori')
+          return
+        }
       localStorage.setItem("token", data.token);
       setAuth(data);
 
