@@ -78,8 +78,8 @@ const Filter = ({ onPageChange }) => {
         <option value="" disabled>
           Order by Name
         </option>
-        <option value="1">Name A-Z</option>
-        <option value="2">Name Z-A</option>
+        <option value="1">Name A - Z</option>
+        <option value="2">Name Z - A</option>
       </select>
 
       <h4>Brand</h4>
