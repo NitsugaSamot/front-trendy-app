@@ -35,10 +35,15 @@ const Login = () => {
           password,
         }
       );
+
       setAlert({});
-      //
+      if(data.isDeleted){
+        alert('siamo fori')
+        return
+      }
       localStorage.setItem("token", data.token);
       setAuth(data);
+
       // navigate('/')
       navigate("/logged_in");
     } catch (error) {
