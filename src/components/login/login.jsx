@@ -39,7 +39,7 @@ const Login = () => {
         setAlert({});
         if(data.isDeleted){
           
-          alert('pasamos por aca')
+          return alert('siamo fori')
         }
       localStorage.setItem("token", data.token);
       setAuth(data);
