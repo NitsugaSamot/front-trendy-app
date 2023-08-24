@@ -37,7 +37,7 @@ const NewPassword = () => {
 
     if (password.length < 6) {
       setAlert({
-        msg: "El Password debe tener al menos 6 caracteres",
+        msg: "The Password must have at least 6 characters",
         error: true,
       });
       return;
@@ -57,6 +57,10 @@ const NewPassword = () => {
         msg: error.response.data.msg,
         error: true,
       });
+      
+      setTimeout(() => {
+        setAlert({})
+      }, 40000);
     }
   };
   const handleInputChange = (e, setState) => {
@@ -65,6 +69,10 @@ const NewPassword = () => {
     setState(value);
   };
 
+setTimeout(() => {
+    setAlert({})
+  }, 40000);
+
   const { msg } = alert;
 
   return (
@@ -72,7 +80,7 @@ const NewPassword = () => {
       <div className="mainRegister">
         <h3 className="titleLogin">Crea una cuenta para hacer tu compra</h3>
 
-        {msg && <Alert alerta={alert} />}
+        {msg && <Alert alert={alert} />}
 
         {validToken && (
           <form action="" className="formRegister" onSubmit={handleSubmit}>
