@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 import { addToCart } from "../../redux/actions";
-
+import swal from "sweetalert";
 import Nav from "../../components/nav/nav";
 import classnames from "classnames";
 import useAuth from "../../contextClient/hooks/useAuth";
@@ -71,14 +71,27 @@ const Detail = () => {
           setShowSuccessAlert(true); // Me muestra un alert de que se envio la valoración
           console.log(response.data); // Muestro lo  que me devuelve el back
           setBotonSubmit(true);
-          alert("Rating sent successfully, thank you for your buy!")
+          swal({
+            title: "Attention",
+            text:"Rating sent successfully, thank you for your buy!",
+            icon: "warning",
+            button: "accept"
+          });
         } else {
-          alert(
-            "The user has not purchased this product or has already given a review."
-          );
+          swal({
+            title: "Attention",
+            text:"The user has not purchased this product or has already given a review.",
+            icon: "warning",
+            button: "accept"
+          });
         }
       } else {
-        alert("The user's information could not be verified");
+        swal({
+          title: "Attention",
+          text:"The user's information could not be verified",
+          icon: "warning",
+          button: "accept"
+        });
       }
     } catch (error) {
       console.log(error);
@@ -113,7 +126,12 @@ const Detail = () => {
         const promedio = calcularPromedio(ratings);
         setPromedio(promedio);
       } catch (error) {
-        window.alert("Error al obtener los datos del personaje");
+        swal({
+          title: "Attention",
+          text:"Error al obtener los datos del personaje",
+          icon: "warning",
+          button: "accept"
+        });
       }
     };
     fetchData();
@@ -152,7 +170,12 @@ const Detail = () => {
   // Manejador para agregar la prenda actual al carrito
   const handleAddToCart = () => {
     if (!size || !selectedColorName) {
-      alert("Please select color and size");
+      swal({
+        title: "Attention",
+        text:"Please select color and size",
+        icon: "warning",
+        button: "accept"
+      });
       return;
     }
 
@@ -165,7 +188,12 @@ const Detail = () => {
     );
 
     if (itemAlreadyInCart) {
-      alert("This product is already in the cart");
+      swal({
+        title: "Attention",
+        text:"This product is already in the cart",
+        icon: "warning",
+        button: "accept"
+      });
       return; // Salir de la función si el producto ya está en el carrito
     }
 
