@@ -46,8 +46,8 @@ const Home = () => {
           totalPages={totalPages}
           handlePageChange={handlePageChange}
         />
-      <Footer />
       </div>
+      <Footer />
     </div>
   );
 };
