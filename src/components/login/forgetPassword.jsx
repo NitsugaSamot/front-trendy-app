@@ -19,9 +19,9 @@ const ForgetPassword = () => {
     console.log("hola");
     e.preventDefault();
 
-    if ([email].includes("")) {
+  if ([email].includes("")) {
       setAlert({
-        msg: "Debes introducir el email de registro para poder acceder a la recuperación de tu password",
+        msg: "You must enter the registration email to access your password recovery",
         error: true,
       });
       return;
@@ -49,6 +49,11 @@ const ForgetPassword = () => {
     }
   };
 
+  
+  setTimeout(() => {
+    setAlert({})
+}, 40000);
+
   const { msg } = alert;
 
   return (
@@ -58,7 +63,7 @@ const ForgetPassword = () => {
           Recupera el acceso a tu cuenta de Trendy-Spot
         </h3>
 
-        {msg && <Alert alerta={alert} />}
+        {msg && <Alert alert={alert} />}
 
         <form action="" className="formRegister" onSubmit={handleSubmit}>
           <div className="columna">
