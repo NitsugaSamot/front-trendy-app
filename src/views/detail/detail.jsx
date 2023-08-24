@@ -33,7 +33,7 @@ const Detail = () => {
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [promedio, setPromedio] = useState(0) //
   const [usuario, setUsuario] = useState(null)
-
+  const [botonSubmit, setBotonSubmit ] = useState(false)
 
 
   const calcularPromedio = (ratings) => {
@@ -53,13 +53,14 @@ const Detail = () => {
           (order) => order.id === parseInt(id)
         );
 
-        if (productInPurchaseOrder) {
-          // console.log(usuario.id);
-          // console.log(id);
-          // const setearPurchase = await axios.put("http://localhost:3004/users/setPurchase",{
-          //   id: usuario.id,
-          //   idProduct: id,
-          // })
+        if (productInPurchaseOrder && productInPurchaseOrder.rating === false) {
+          console.log(usuario.id);
+          console.log(id);
+          const setearPurchase = await axios.put("https://back-trendy-app.up.railway.app/users/ratingTrue", {
+            userId: parseInt(usuario.id),
+            idProduct: parseInt(id),
+          })
+          console.log(setearPurchase.data);
 
           const response = await axios.post(
             "https://back-trendy-app.up.railway.app/users/rating",
@@ -68,11 +69,12 @@ const Detail = () => {
           setRating(0); // Reinicia el estado de la valoración
           setShowSuccessAlert(true); // Me muestra un alert de que se envio la valoración
           console.log(response.data); // Muestro lo  que me devuelve el back
+          setBotonSubmit(true)
         } else {
-          alert("El usuario no ha comprado este producto o ya hizo una valoración.");
+          alert("The user has not purchased this product or has already given a review.");
         }
       } else {
-        alert("No se pudo verificar la información del usuario.");
+        alert("The user's information could not be verified");
       }
     } catch (error) {
       console.log(error);
@@ -118,9 +120,10 @@ const Detail = () => {
     const valoracion = async () => {
       try {
         if (auth.id) {
+          //https://back-trendy-app.up.railway.app/users/
           const response = await axios.get(`https://back-trendy-app.up.railway.app/users/${auth.id}`);
           setUsuario(response.data);
-          console.log(response.data.purchaseOrder[0].rating || []);
+          console.log(response.data.purchaseOrder[0]);
 
 
         }
@@ -398,7 +401,7 @@ const Detail = () => {
             ))}
           </div>
         }
-        <button onClick={handleSubmitRating}>Send Feedback</button>
+        <button onClick={handleSubmitRating} disabled={botonSubmit}>Send Feedback</button>
         {showSuccessAlert && (
           <div className="alert alert-success d-flex align-items-center" role="alert">
             <svg className="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">

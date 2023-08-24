@@ -3,7 +3,7 @@
 const ConfirmationPage = () => {
   // Manejador para el botón "Volver a Trendyspot"
   const handleBack = () => {
-    window.location.href = "https://front-trendy-app.vercel.app/logged_in";
+    window.location.href = "https://front-trendy-app.vercel.app";
   };
 
   return (
